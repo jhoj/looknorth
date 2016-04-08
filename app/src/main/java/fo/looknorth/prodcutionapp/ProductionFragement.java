@@ -30,10 +30,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
 
-import java.text.SimpleDateFormat;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import model.Logic;
 import model.Machine;
@@ -99,10 +97,7 @@ public class ProductionFragement extends Fragment {
             barChart.setOnChartValueSelectedListener(this);
             barChart.setDrawBarShadow(false);
             barChart.setDrawValueAboveBar(true);
-
             barChart.setDescription("Today's Production");
-
-            // scaling can now only be done on x- and y-axis separately
             barChart.setPinchZoom(false);
 
             barChart.setDrawGridBackground(false);
@@ -129,13 +124,13 @@ public class ProductionFragement extends Fragment {
             l.setTextSize(11f);
             l.setXEntrySpace(4f);
 
-            setData(12, 50);
+            setBarData();
 
             mChart = (PieChart) rootView.findViewById(R.id.pie_chart);
             mChart.setUsePercentValues(true);
 
             mChart.setCenterText("Daily Production");
-
+            mChart.setDescription("");
             mChart.setDrawHoleEnabled(true);
             mChart.setHoleColor(Color.WHITE);
 
@@ -150,7 +145,7 @@ public class ProductionFragement extends Fragment {
             // add a selection listener
             mChart.setOnChartValueSelectedListener(this);
 
-            setPieData(3, 100);
+            setPieData();
 
             Legend pieLegend = mChart.getLegend();
             pieLegend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
@@ -161,7 +156,8 @@ public class ProductionFragement extends Fragment {
             return rootView;
         }
 
-        private void setPieData(int count, float range) {
+        private void setPieData() {
+            //todo add animation to the pie
             ArrayList<String> xVals = new ArrayList<>();
             ArrayList<Entry> yVals = new ArrayList<Entry>();
             ArrayList<Machine> machines = (ArrayList<Machine>) Logic.instance.machines;
@@ -181,7 +177,7 @@ public class ProductionFragement extends Fragment {
                 yVals.add(new Entry(percentage, i));
             }
 
-            PieDataSet dataSet = new PieDataSet(yVals, "Total Production");
+            PieDataSet dataSet = new PieDataSet(yVals, "");
             dataSet.setSliceSpace(3f);
             dataSet.setSelectionShift(5f);
 
@@ -211,7 +207,8 @@ public class ProductionFragement extends Fragment {
             mChart.invalidate();
         }
 
-        private void setData(int count, float range) {
+        private void setBarData() {
+            //todo add animation to the bars
             Machine m = Logic.instance.machines.get(0);
             ArrayList<String> xVals = new ArrayList<>();
 
@@ -219,29 +216,29 @@ public class ProductionFragement extends Fragment {
                 xVals.add(p.product.name);
             }
 
-
-            ArrayList<BarEntry> yVals = new ArrayList<>();
-
-            for (int i = 0; i < m.productionList.size(); i++) {
-                yVals.add(new BarEntry(m.productionList.get(i).quantityProduced, i));
-            }
-
-            BarDataSet set = new BarDataSet(yVals, "DataSet");
-            set.setBarSpacePercent(35f);
-
             ArrayList<Integer> colors = new ArrayList<>();
             for (int i: ColorTemplate.COLORFUL_COLORS) {
-                  colors.add(i);
+                colors.add(i);
             }
             for (int i: ColorTemplate.LIBERTY_COLORS) {
-                  colors.add(i);
+                colors.add(i);
             }
             for (int i: ColorTemplate.PASTEL_COLORS) {
-                  colors.add(i);
+                colors.add(i);
             }
 
+
+            BarDataSet set;
             ArrayList<BarDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set);
+
+            for (int i = 0; i < m.productionList.size(); i++) {
+               ArrayList<BarEntry> list = new ArrayList<>();
+               list.add(new BarEntry(m.productionList.get(i).quantityProduced, i));
+                set = new BarDataSet(list, m.productionList.get(i).product.name);
+                set.setColor(colors.get(i));
+                set.setBarSpacePercent(35f);
+                dataSets.add(set);
+            }
 
             BarData data = new BarData(xVals, dataSets);
             data.setValueTextSize(10f);
