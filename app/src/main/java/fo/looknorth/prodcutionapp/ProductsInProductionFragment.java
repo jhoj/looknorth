@@ -2,6 +2,8 @@ package fo.looknorth.prodcutionapp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -49,7 +51,6 @@ public class ProductsInProductionFragment extends Fragment {
         public static int id;
         TextView currentProductText;
         Spinner productListSpinner;
-
 
         /**
          * Returns a new instance of this fragment for the given section

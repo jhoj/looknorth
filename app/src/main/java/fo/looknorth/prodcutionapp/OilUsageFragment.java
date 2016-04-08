@@ -2,6 +2,7 @@ package fo.looknorth.prodcutionapp;
 
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -31,7 +32,7 @@ import java.util.Random;
  */
 public class OilUsageFragment extends Fragment {
 
-    private CurrentContextPagerAdapter currentContextPagerAdapter;
+    private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private ViewPager viewPager;
 
 
@@ -40,19 +41,18 @@ public class OilUsageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_layout, container, false);
 
         // Create the adapter that will return the fragments
-        currentContextPagerAdapter = new CurrentContextPagerAdapter(getChildFragmentManager());
+        myFragmentPagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager());
         viewPager = (ViewPager) view.findViewById(R.id.container);
-        viewPager.setAdapter(currentContextPagerAdapter);
+        viewPager.setAdapter(myFragmentPagerAdapter);
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         pagerSlidingTabStrip.setViewPager(viewPager);
-
         Toast.makeText(getActivity(), "Oil Usage", Toast.LENGTH_SHORT).show();
         getActivity().setTitle("Oil Usage");
         return view;
     }
 
-    public static class CurrentContextFragment extends Fragment
+    public static class ContentFragment extends Fragment
     {
         //MP Chart
         private LineChart lineChart;
@@ -210,15 +210,15 @@ public class OilUsageFragment extends Fragment {
         }
     }
 
-    public class CurrentContextPagerAdapter extends FragmentPagerAdapter {
+    public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-        public CurrentContextPagerAdapter(FragmentManager fm) {
+        public MyFragmentPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            return new CurrentContextFragment();
+            return new ContentFragment();
         }
 
         @Override
