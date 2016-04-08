@@ -1,0 +1,5 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="ic_menu_set_products" type="drawable">@android:drawable/ic_menu_manage</item>
+    <item name="ic_menu_production" type="drawable">@android:drawable/ic_menu_info_details</item>
+    <item name="ic_menu_oil_usage" type="drawable"></item>
+</resources>

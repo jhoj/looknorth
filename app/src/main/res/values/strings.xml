@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Looknorth Prodcution</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--menu text  ENGLISH -->
+    <string name="production_menu_name">Production</string>
+    <string name="oil_usage_menu_name">Oil Usage</string>
+    <string name="set_active_products_menu_name">Products in production</string>
+    <string name="title_oil_usage">Oil Usage</string>
+    <string name="fragment_title_machine">Machine %1$d</string>
+    <string name="fragment_title_oil_usage">Total usage</string>
+    <string name="fragment_title_production">Daily Production</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_multi_line_chart">MultiLineChartActivity</string>
+</resources>

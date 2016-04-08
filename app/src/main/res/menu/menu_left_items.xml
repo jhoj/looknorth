@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Menu">
+        <menu>
+            <item
+                android:id="@+id/item_prodcution"
+                android:icon="@drawable/ic_production"
+                android:title="@string/production_menu_name" />
+            <item
+                android:id="@+id/item_oil_usage"
+                android:icon="@drawable/ic_oil_usage"
+                android:title="@string/oil_usage_menu_name" />
+            <item
+                android:id="@+id/item_set_active_products"
+                android:icon="@drawable/ic_set_product"
+                android:title="@string/set_active_products_menu_name" />
+
+        </menu>
+    </item>
+
+</menu>
