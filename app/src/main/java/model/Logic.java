@@ -37,59 +37,24 @@ public class Logic extends Application{
 
     private void addTestData(){
 
-        Product p1 = new Product(1, "Test Product 1", 2);
-        Product p2 = new Product(2, "Test Product 2", 1);
+        int quantity = 2;
+        int quantity1 = 1;
+
+        Product p1 = new Product(1, "Test Product 1", quantity);
+        Product p2 = new Product(2, "Test Product 2", quantity1);
         //todo remove this test method when working
         Production p1m1 = new Production(p1);
-        Production p1m2 = new Production(p2);
-        Production p1m3 = new Production(machines.get(0).productList.get(2));
-        Production p2m1 = new Production(machines.get(0).productList.get(3));
-        Production p2m2 = new Production(machines.get(0).productList.get(4));
-        Production p3m3 = new Production(machines.get(0).productList.get(5));
-        Production p3m4 = new Production(machines.get(0).productList.get(6));
-        Production p1m5 = new Production(machines.get(0).productList.get(7));
+        Production p2m1 = new Production(p2);
 
         p1m1.productionCycles = 1;
-        p1m2.productionCycles = 1;
-        p1m3.productionCycles = 2;
-        p2m1.productionCycles = 4;
-        p2m2.productionCycles = 5;
-        p3m3.productionCycles = 8;
-        p3m4.productionCycles = 5;
-        p1m5.productionCycles = 99;
+        p2m1.productionCycles = 1;
 
+        //m1 p1 total = 2 * 1
         p1m1.updateQuantityProduced();
-        p1m2.updateQuantityProduced();
-        p1m3.updateQuantityProduced();
+        //m1 p2 total = 1 * 1
         p2m1.updateQuantityProduced();
-        p2m2.updateQuantityProduced();
-        p3m3.updateQuantityProduced();
-        p3m4.updateQuantityProduced();
-        p1m5.updateQuantityProduced();
-
         //production for machine 1
         machines.get(0).productionList.add(p1m1);
         machines.get(0).productionList.add(p2m1);
-
-        //machine 2
-        machines.get(1).productionList.add(p2m2);
-        machines.get(1).productionList.add(p1m2);
-        //3
-        machines.get(2).productionList.add(p1m3);
-        machines.get(2).productionList.add(p3m3);
-        //4
-        machines.get(3).productionList.add(p3m4);
-        //5
-        machines.get(4).productionList.add(p1m5);
-
-        for (Production p: machines.get(0).productionList) {
-            machines.get(0).totalProducedItems += p.quantityProduced;
-        }
-        System.out.println(machines.get(0).totalProducedItems);
-    }
-
-    public static void main(String[] args) {
-        Logic l = new Logic();
-        System.out.println(l.machines.get(0).totalProducedItems);
     }
 }

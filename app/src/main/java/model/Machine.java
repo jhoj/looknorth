@@ -27,6 +27,16 @@ public class Machine {
         currentProduct = productList.get(0);
     }
 
+    public int getTotalProducedItems()
+    {
+        int total = 0;
+        for (Production p:productionList)
+        {
+            total += p.quantityProduced;
+        }
+        return total;
+    }
+
     private ArrayList<Product> initProductList() {
         ArrayList<Product> productList = new ArrayList<>();
         productList.add(new Product(0, "Not active", 0));

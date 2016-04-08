@@ -165,25 +165,21 @@ public class ProductionFragement extends Fragment {
             ArrayList<String> xVals = new ArrayList<>();
             ArrayList<Entry> yVals = new ArrayList<Entry>();
             ArrayList<Machine> machines = (ArrayList<Machine>) Logic.instance.machines;
-            Machine total = machines.get(0);
+            Machine machine0 = machines.get(0);  //this is the total section
 
-            for (int i = 0; i < total.productionList.size(); i++)
+            for (int i = 0; i < machine0.productionList.size(); i++)
             {
                 //it has 2 entries
-                xVals.add(total.productionList.get(i).product.name);
-                yVals.add(new Entry((total.productionList.get(i).quantityProduced)  / total.productionList.size(), i));
+                //two names added to pie chart.
+                xVals.add(machine0.productionList.get(i).product.name);
+                //shows the product percentage of the whole production
+                float pieTotal = machine0.getTotalProducedItems();
+                float productionQuantity = machine0.productionList.get(i).quantityProduced;
+                float fraction = productionQuantity / pieTotal;
+                float percentage = fraction * 100;
+
+                yVals.add(new Entry(percentage, i));
             }
-
-//                for (int i = 0; i < xVals.size(); i++) {
-//                    if(m.productionList.get(i).product.id != 0)
-//                        yVals.add(new Entry((float) (m.productionList.get(i).quantityProduced) + 100 / xVals.size(), i));
-//                }
-
-
-//            String[] mParties = {"Party A", "Party B", "Party C", "Party D"};
-//
-//            for (int i = 0; i < count + 1; i++)
-//                xVals.add(mParties[i % mParties.length]);
 
             PieDataSet dataSet = new PieDataSet(yVals, "Total Production");
             dataSet.setSliceSpace(3f);
@@ -216,46 +212,39 @@ public class ProductionFragement extends Fragment {
         }
 
         private void setData(int count, float range) {
-
-            Calendar calendar = Calendar.getInstance();
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
-
+            Machine m = Logic.instance.machines.get(0);
             ArrayList<String> xVals = new ArrayList<>();
-            for (int i = 0; i < count; i++) {
 
-                if (minute > 59) {
-                    hour += 1;
-                    minute = 0;
-                }
-                else {
-                    minute += 1;
-                }
-
-                if (hour > 23) {
-                    hour = 0;
-                }
-
-                xVals.add(hour + ":" + minute);
+            for (Production p: m.productionList) {
+                xVals.add(p.product.name);
             }
+
 
             ArrayList<BarEntry> yVals = new ArrayList<>();
 
-            for (int i = 0; i < count; i++) {
-                float mult = (range + 1);
-                float val = (float) (Math.random() * mult);
-                yVals.add(new BarEntry(val, i));
+            for (int i = 0; i < m.productionList.size(); i++) {
+                yVals.add(new BarEntry(m.productionList.get(i).quantityProduced, i));
             }
 
             BarDataSet set = new BarDataSet(yVals, "DataSet");
             set.setBarSpacePercent(35f);
+
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int i: ColorTemplate.COLORFUL_COLORS) {
+                  colors.add(i);
+            }
+            for (int i: ColorTemplate.LIBERTY_COLORS) {
+                  colors.add(i);
+            }
+            for (int i: ColorTemplate.PASTEL_COLORS) {
+                  colors.add(i);
+            }
 
             ArrayList<BarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set);
 
             BarData data = new BarData(xVals, dataSets);
             data.setValueTextSize(10f);
-
             barChart.setData(data);
         }
 
