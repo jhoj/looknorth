@@ -2,11 +2,13 @@ package fo.looknorth.prodcutionapp;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +66,7 @@ public class OilUsageFragment extends Fragment {
                 ColorTemplate.COLORFUL_COLORS[4]
         };
         private LineData data;
+        Handler handler = new Handler();
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,41 +108,32 @@ public class OilUsageFragment extends Fragment {
             return rootView;
         }
 
+        // Define the code block to be executed
+        private Runnable runnableCode = new Runnable() {
+            @Override
+            public void run() {
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                String time = simpleDateFormat.format(Calendar.getInstance().getTime());
+
+                addEntry(time, getCurrentUsage(), getRecommendedUsage());
+
+                Log.d("Handlers", "Called on main thread");
+                // Repeat this the same runnable code block again another 2 seconds
+                handler.postDelayed(runnableCode, 2000);
+            }
+        };
+
+
         @Override
         public void onResume() {
             super.onResume();
-
-            new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    for (int i = 0; i < 100; i++) {
-
-                        //TODO will crash when screen orientation is changed.
-
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-                                String time = simpleDateFormat.format(Calendar.getInstance().getTime());
-
-                                addEntry(time, getCurrentUsage(), getRecommendedUsage());
-                            }
-                        });
-
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
+            handler.post(runnableCode);
         }
 
         @Override
         public void onPause() {
+            handler.removeCallbacks(runnableCode);
             Toast.makeText(getActivity(), "onPause", Toast.LENGTH_SHORT).show();
             super.onPause();
         }

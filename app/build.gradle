@@ -29,4 +29,5 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     //chart library
     compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
+    compile files('/home/jakup/Android/Project/Looknorth/libs/gson-2.2.4.jar')
 }
