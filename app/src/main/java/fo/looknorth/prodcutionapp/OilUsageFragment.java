@@ -3,12 +3,10 @@ package fo.looknorth.prodcutionapp;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,24 +82,26 @@ public class OilUsageFragment extends Fragment {
             lineChart.setPinchZoom(false);
 
             Legend l = lineChart.getLegend();
-            l.setForm(Legend.LegendForm.LINE);
+            l.setForm(Legend.LegendForm.CIRCLE);
             l.setTextColor(ColorTemplate.getHoloBlue());
             l.setTextSize(16f);
 
-            XAxis x1 = lineChart.getXAxis();
-            x1.setDrawGridLines(false);
-            x1.setAvoidFirstLastClipping(true);
-            x1.setAdjustXLabels(true);
-            x1.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
-            x1.setTextSize(16f);
+            XAxis xAxis = lineChart.getXAxis();
+            xAxis.setDrawGridLines(false);
+            xAxis.setAvoidFirstLastClipping(true);
+            xAxis.setAdjustXLabels(true);
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setTextSize(16f);
 
-            YAxis y1 = lineChart.getAxisLeft();
-            y1.setTextColor(ColorTemplate.getHoloBlue());
-            y1.setAxisMaxValue(2f);
-            y1.setDrawGridLines(false);
-            y1.setTextSize(16f);
+            YAxis yAxisLeft = lineChart.getAxisLeft();
+            yAxisLeft.setTextColor(ColorTemplate.getHoloBlue());
+            yAxisLeft.setAxisMaxValue(2f);
+            yAxisLeft.setDrawGridLines(false);
+            yAxisLeft.setTextSize(16f);
 
-            lineChart.getAxisRight().setEnabled(false);
+            YAxis yAxisRight = lineChart.getAxisRight();
+            yAxisRight.setEnabled(true);
+            yAxisRight.setDrawGridLines(false);
 
             addLines();
 
@@ -109,18 +109,14 @@ public class OilUsageFragment extends Fragment {
         }
 
         // Define the code block to be executed
-        private Runnable runnableCode = new Runnable() {
+        private Runnable updateLineChart = new Runnable() {
             @Override
             public void run() {
 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
                 String time = simpleDateFormat.format(Calendar.getInstance().getTime());
-
                 addEntry(time, getCurrentUsage(), getRecommendedUsage());
-
-                Log.d("Handlers", "Called on main thread");
-                // Repeat this the same runnable code block again another 2 seconds
-                handler.postDelayed(runnableCode, 2000);
+                handler.postDelayed(updateLineChart, 1000); // run every second.
             }
         };
 
@@ -128,13 +124,12 @@ public class OilUsageFragment extends Fragment {
         @Override
         public void onResume() {
             super.onResume();
-            handler.post(runnableCode);
+            handler.post(updateLineChart);
         }
 
         @Override
         public void onPause() {
-            handler.removeCallbacks(runnableCode);
-            Toast.makeText(getActivity(), "onPause", Toast.LENGTH_SHORT).show();
+            handler.removeCallbacks(updateLineChart);
             super.onPause();
         }
 
@@ -161,37 +156,55 @@ public class OilUsageFragment extends Fragment {
         }
 
         private void addLines() {
-            ArrayList<String> xVals = new ArrayList<>();
-            xVals.add("");
-            ArrayList<LineDataSet> dataSets = new ArrayList<>();
+            //setup the
+            ArrayList<String> xValues = new ArrayList<>();
+
+            //adding an item to the list to allow instantiation for the other lists.
+            xValues.add("");
+
+            //list of linedataset, to carry data for y-values
+            ArrayList<LineDataSet> yValues = new ArrayList<>();
+
             //setting currentusage entry list.
-            //add an empty entry for each dataset
-            //to be able to instatiate
-            ArrayList<Entry> cValues = new ArrayList<>();
-            cValues.add(new Entry(0, 0));
-            LineDataSet current = new LineDataSet(cValues, "Current oil usage in liters");
-            int cColor = mColors[3];
-            current.setColor(cColor);
-            current.setCircleColor(cColor);
-            current.setLineWidth(2.5f);
-            dataSets.add(current);
-            //setting recommended usage entry list.
-            //add an empty entry for each dataset
-            //to be able to instatiate
-            ArrayList<Entry> values = new ArrayList<>();
-            values.add(new Entry(0, 0));
-            LineDataSet recommended = new LineDataSet(values, "Recommended");
-            recommended.setDrawValues(false);
-            recommended.setDrawCircles(false);
+            ArrayList<Entry> currentUsageValues = new ArrayList<>();
+
+            //add an empty entry to allow instatiation of linedataset.
+            currentUsageValues.add(new Entry(0, 0));
+
+            //LineDataSet needs a list of entries to instatiate
+            LineDataSet currentUsageDataSet = new LineDataSet(currentUsageValues, "Current oil usage in liters");
+
+            //set the color to green
+            int currentUsageColor = mColors[3];
+
+            currentUsageDataSet.setColor(currentUsageColor);
+            currentUsageDataSet.setCircleColor(currentUsageColor);
+            currentUsageDataSet.setLineWidth(2.5f);
+
+            //add current
+            yValues.add(currentUsageDataSet);
+
+            ArrayList<Entry> recommendedUsageValues = new ArrayList<>();
+            recommendedUsageValues.add(new Entry(0, 0));
+
+            LineDataSet recommendedUsageDataSet = new LineDataSet(recommendedUsageValues, "Recommended");
+            recommendedUsageDataSet.setDrawValues(false);
+            recommendedUsageDataSet.setDrawCircles(false);
+
             int rColor = mColors[1];
-            recommended.setColor(rColor);
-            recommended.setLineWidth(2.5f);
-            recommended.setLabel("Recommeded");
-            dataSets.add(recommended);
+            recommendedUsageDataSet.setColor(rColor);
+            recommendedUsageDataSet.setLineWidth(2.5f);
+            recommendedUsageDataSet.setLabel("Recommeded");
+
+            yValues.add(recommendedUsageDataSet);
+
             // add to line data
-            data = new LineData(xVals, dataSets);
+            data = new LineData(xValues, yValues);
+
             //add to chart
             lineChart.setData(data);
+
+            //update
             lineChart.invalidate();
         }
 
@@ -219,7 +232,7 @@ public class OilUsageFragment extends Fragment {
         public int getCount() {
             //will show 6 pages
             //total and all machines.
-            //TODO the count should be able to scale.
+            //TODO the count should be able to scale. i.e. use amount of machines to set count
             return 6;
         }
 

@@ -30,4 +30,5 @@ dependencies {
     //chart library
     compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
     compile files('/home/jakup/Android/Project/Looknorth/libs/gson-2.2.4.jar')
+    compile files('/home/jakup/Android/Project/Looknorth/libs/gson-2.2.jar')
 }
