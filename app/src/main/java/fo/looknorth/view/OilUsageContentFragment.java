@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -27,6 +26,7 @@ public class OilUsageContentFragment extends Fragment
 {
     // tab index in the viewpager
     public int tabIndex;
+
     //MP Chart
     private LineChart lineChart;
     private int[] mColors = new int[] {
@@ -37,6 +37,7 @@ public class OilUsageContentFragment extends Fragment
             ColorTemplate.COLORFUL_COLORS[4]
     };
     private LineData data;
+
     Handler handler = new Handler();
 
     /**
@@ -45,12 +46,12 @@ public class OilUsageContentFragment extends Fragment
      */
     public static OilUsageContentFragment newInstance(int currentTab) {
 
-        OilUsageContentFragment f = new OilUsageContentFragment();
-        //f.tabIndex = currentTab;
-        Bundle args = new Bundle();
-        args.putInt("tabIndex", currentTab);
-        f.setArguments(args);
-        return f;
+        OilUsageContentFragment fragment = new OilUsageContentFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("tabIndex", currentTab);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -116,9 +117,6 @@ public class OilUsageContentFragment extends Fragment
     @Override
     public void onPause() {
         handler.removeCallbacks(updateLineChart);
-
-        Toast.makeText(getActivity(), "onPause tab index: " + tabIndex, Toast.LENGTH_SHORT).show();
-
         super.onPause();
     }
 

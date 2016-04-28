@@ -121,12 +121,17 @@ public class Logik {
         /************************
          *      PRODUCTION
          ***********************/
+//        generateProductionTestData(int numberOfProducts, )
+//        getProduct();
+//        getProductionCounter();
+//        counter.update();
+//        addtolist
         int quantity = 2;
         int quantity1 = 1;
 
         Product p1 = new Product(1, "Test Product 1", quantity);
         Product p2 = new Product(2, "Test Product 2", quantity1);
-        //todo remove this test method when working
+
         ProductionCounter p1m1 = new ProductionCounter(p1);
         ProductionCounter p2m1 = new ProductionCounter(p2);
 
@@ -139,10 +144,25 @@ public class Logik {
         p2m1.updateQuantityProduced();
 
         //production for total
-        machines[0].productionCounterList = new ArrayList<ProductionCounter>();
+        machines[0].productionCounterList = new ArrayList<>();
         machines[0].productionCounterList.add(p1m1);
         machines[0].productionCounterList.add(p2m1);
 
+        machines[1].productionCounterList = new ArrayList<>();
+        machines[1].productionCounterList.add(p1m1);
+        machines[1].productionCounterList.add(p2m1);
+
+        machines[2].productionCounterList = new ArrayList<>();
+        machines[2].productionCounterList.add(p1m1);
+        machines[2].productionCounterList.add(p2m1);
+
+        machines[3].productionCounterList = new ArrayList<>();
+        machines[3].productionCounterList.add(p1m1);
+        machines[3].productionCounterList.add(p2m1);
+
+        machines[4].productionCounterList = new ArrayList<>();
+        machines[4].productionCounterList.add(p1m1);
+        machines[4].productionCounterList.add(p2m1);
 
     }
 

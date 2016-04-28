@@ -17,17 +17,6 @@ public class OilUsageFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
-        //todo how to get correct position number?
-
-        //NOTES...
-        // starts with making position for total section = 1, when starting up
-        // should be 0 to fetch correct data.
-
-        //the last section does not update to last position, i.e. when machine 4 is in focus,
-        //and then machine 5 is clicked, then postion will still be 4.
-
-
         return OilUsageContentFragment.newInstance(position);
     }
 

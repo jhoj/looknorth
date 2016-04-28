@@ -34,12 +34,8 @@ import fo.looknorth.model.Machine;
 import fo.looknorth.model.ProductionCounter;
 
 public class ProductionContentFragment extends Fragment implements OnChartValueSelectedListener {
-    /**
-     * The fragment argument representing the number for this
-     * fragment.
-     */
-    private static final String FRAGMENT_POSITION = "FRAGMENT_POSITION";
 
+    public int tabIndex;
     private BarChart barChart;
     private PieChart mChart;
 
@@ -50,15 +46,22 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static ProductionContentFragment newInstance()
+    public static ProductionContentFragment newInstance(int tabIndex)
     {
-        return new ProductionContentFragment();
+        ProductionContentFragment fragment = new ProductionContentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("tabIndex", tabIndex);
+        fragment.setArguments(bundle);
+
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_production, container, false);
+
+        tabIndex = getArguments().getInt("tabIndex");
 
         TextView dateText = (TextView) rootView.findViewById(R.id.dateText);
         dateText.setText(Logik.instance.getDate());
@@ -131,16 +134,16 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         ArrayList<String> xVals = new ArrayList<>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
         ArrayList<Machine> machines = new ArrayList<>(Arrays.asList(Logik.instance.machines));
-        Machine machine0 = machines.get(0);  //this is the total section
+        Machine machine = machines.get(tabIndex);  //this is the total section
 
-        for (int i = 0; i < machine0.productionCounterList.size(); i++)
+        for (int i = 0; i < machine.productionCounterList.size(); i++)
         {
             //it has 2 entries
             //two names added to pie chart.
-            xVals.add(machine0.productionCounterList.get(i).product.name);
+            xVals.add(machine.productionCounterList.get(i).product.name);
             //shows the product percentage of the whole production
-            float pieTotal = machine0.getTotalProducedItems();
-            float productionQuantity = machine0.productionCounterList.get(i).quantityProduced;
+            float pieTotal = machine.getTotalProducedItems();
+            float productionQuantity = machine.productionCounterList.get(i).quantityProduced;
             float fraction = productionQuantity / pieTotal;
             float percentage = fraction * 100;
 
@@ -179,8 +182,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
 
     private void setBarData() {
         //todo add animation to the bars
-        //todo get machine by id.
-        Machine m = Logik.instance.machines[0];
+        Machine m = Logik.instance.machines[tabIndex];
         ArrayList<String> xVals = new ArrayList<>();
 
         for (ProductionCounter p: m.productionCounterList) {

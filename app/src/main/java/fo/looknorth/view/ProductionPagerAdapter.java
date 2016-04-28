@@ -15,7 +15,7 @@ public class ProductionPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ProductionContentFragment.newInstance();
+        return ProductionContentFragment.newInstance(position);
     }
 
     @Override
