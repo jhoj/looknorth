@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,9 +19,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-import fo.looknorth.productionapp.app.R;
-import fo.looknorth.productionapp.logik.Logik;
-import fo.looknorth.productionapp.model.OilUsageEntry;
+import fo.looknorth.app.app.R;
+import fo.looknorth.logik.Logik;
+import fo.looknorth.model.OilUsageEntry;
 
 public class OilUsageContentFragment extends Fragment
 {

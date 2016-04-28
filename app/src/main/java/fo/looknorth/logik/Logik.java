@@ -1,14 +1,14 @@
-package fo.looknorth.productionapp.logik;
+package fo.looknorth.logik;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import fo.looknorth.productionapp.model.Machine;
-import fo.looknorth.productionapp.model.OilUsageEntry;
-import fo.looknorth.productionapp.model.Product;
-import fo.looknorth.productionapp.model.ProductionCounter;
+import fo.looknorth.model.Machine;
+import fo.looknorth.model.OilUsageEntry;
+import fo.looknorth.model.Product;
+import fo.looknorth.model.ProductionCounter;
 
 /**
  * Created by jakup on 4/27/16.

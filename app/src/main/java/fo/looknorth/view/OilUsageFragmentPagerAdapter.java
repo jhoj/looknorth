@@ -1,10 +1,10 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import fo.looknorth.productionapp.logik.Logik;
+import fo.looknorth.logik.Logik;
 
 /**
  * Created by jakup on 4/28/16.

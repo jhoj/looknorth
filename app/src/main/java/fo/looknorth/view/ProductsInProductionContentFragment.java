@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fo.looknorth.productionapp.app.R;
-import fo.looknorth.productionapp.logik.Logik;
+import fo.looknorth.app.app.R;
+import fo.looknorth.logik.Logik;
 
 public class ProductsInProductionContentFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 

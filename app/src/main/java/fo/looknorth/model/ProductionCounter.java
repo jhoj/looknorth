@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.model;
+package fo.looknorth.model;
 
 /**
  * Created by jakup on 4/6/16.

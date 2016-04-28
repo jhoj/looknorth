@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,11 +27,11 @@ import com.github.mikephil.charting.utils.PercentFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import fo.looknorth.productionapp.app.R;
-import fo.looknorth.productionapp.logik.Logik;
-import fo.looknorth.productionapp.model.Machine;
+import fo.looknorth.app.app.R;
+import fo.looknorth.logik.Logik;
+import fo.looknorth.model.Machine;
 
-import fo.looknorth.productionapp.model.ProductionCounter;
+import fo.looknorth.model.ProductionCounter;
 
 public class ProductionContentFragment extends Fragment implements OnChartValueSelectedListener {
     /**

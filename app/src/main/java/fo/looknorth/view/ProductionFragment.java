@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import fo.looknorth.productionapp.app.R;
+import fo.looknorth.app.app.R;
 
 /**
  * Created by jakup on 3/16/16.

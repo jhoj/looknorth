@@ -1,4 +1,4 @@
-package fo.looknorth.productionapp.view;
+package fo.looknorth.view;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,8 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import fo.looknorth.productionapp.app.R;
-import fo.looknorth.productionapp.logik.Logik;
+import fo.looknorth.app.app.R;
+import fo.looknorth.logik.Logik;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
