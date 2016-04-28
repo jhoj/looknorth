@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="262093e5c0772728da5ec3f7395a5885d7b931e7">
-        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_948acf7ad5d1e31ba4bab056fed1e5d3da9cd585/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

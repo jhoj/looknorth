@@ -26,7 +26,7 @@ import fo.looknorth.model.OilUsageEntry;
 public class OilUsageContentFragment extends Fragment
 {
     // tab index in the viewpager
-    public static int tabIndex;
+    public int tabIndex;
     //MP Chart
     private LineChart lineChart;
     private int[] mColors = new int[] {
@@ -45,13 +45,19 @@ public class OilUsageContentFragment extends Fragment
      */
     public static OilUsageContentFragment newInstance(int currentTab) {
 
-        tabIndex = currentTab;
-        return new OilUsageContentFragment();
+        OilUsageContentFragment f = new OilUsageContentFragment();
+        //f.tabIndex = currentTab;
+        Bundle args = new Bundle();
+        args.putInt("tabIndex", currentTab);
+        f.setArguments(args);
+        return f;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_oil_usage, container, false);
+
+        tabIndex = getArguments().getInt("tabIndex");
 
         //MP CHART
         lineChart = (LineChart) rootView.findViewById(R.id.line_chart);
