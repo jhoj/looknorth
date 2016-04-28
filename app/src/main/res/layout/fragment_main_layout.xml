@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="fo.looknorth.prodcutionapp.OilUsageFragment">
+    tools:context="fo.looknorth.productionapp.view.OilUsageFragment">
 
     <com.astuetz.PagerSlidingTabStrip
         android:layout_width="match_parent"

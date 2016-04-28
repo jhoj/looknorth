@@ -5,7 +5,7 @@ android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:id="@+id/main_content"
 android:fitsSystemWindows="true"
-tools:context="fo.looknorth.prodcutionapp.OilUsageFragment">
+tools:context="fo.looknorth.productionapp.view.OilUsageFragment">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -32,10 +32,6 @@ tools:context="fo.looknorth.prodcutionapp.OilUsageFragment">
                 android:layout_width="match_parent"
                 android:layout_height="380dp"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:background="@color/looknorthDark"></View>
 
             <TextView
                 android:layout_width="match_parent"

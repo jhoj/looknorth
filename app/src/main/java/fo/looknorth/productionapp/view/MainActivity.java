@@ -1,4 +1,4 @@
-package fo.looknorth.prodcutionapp;
+package fo.looknorth.productionapp.view;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,7 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import model.Logic;
+import fo.looknorth.productionapp.app.R;
+import fo.looknorth.productionapp.logik.Logik;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -20,6 +21,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Logik.instance = new Logik();
+        Logik.instance.lavTestData();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.item_prodcution:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_activity_fragment_content, new ProductionFragement())
+                        .replace(R.id.main_activity_fragment_content, new ProductionFragment())
                         .commit();
                 break;
             case R.id.item_set_active_products:

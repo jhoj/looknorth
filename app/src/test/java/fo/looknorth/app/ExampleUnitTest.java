@@ -1,4 +1,4 @@
-package fo.looknorth.prodcutionapp;
+package fo.looknorth.app;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package fo.looknorth.prodcutionapp;
+package fo.looknorth.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

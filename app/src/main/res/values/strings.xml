@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Looknorth</string>
+    <string name="oil_usage_name">Oil Usage</string>
+    <string name="products_in_production_name">Products in Production</string>
+    <string name="production">Production</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

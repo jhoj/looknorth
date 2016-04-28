@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.net.Proxy;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

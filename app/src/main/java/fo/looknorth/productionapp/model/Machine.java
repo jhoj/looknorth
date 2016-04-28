@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,14 +15,27 @@ import java.util.List;
  */
 public class Machine {
     public int machineNumber;
+    public String machineName;
     public Product currentProduct;
+    public ArrayList<ProductionCounter> productionCounterList;
 
     public Machine() {}
 
     public Machine(int machineNumber, Product product)
     {
+        this.machineName = "Machine " + machineNumber;
         this.machineNumber = machineNumber;
         this.currentProduct = product;
+    }
+
+    public int getTotalProducedItems()
+    {
+        int total = 0;
+        for (ProductionCounter p: productionCounterList)
+        {
+            total += p.quantityProduced;
+        }
+        return total;
     }
 
     public List<Machine> getDbMachines() {
