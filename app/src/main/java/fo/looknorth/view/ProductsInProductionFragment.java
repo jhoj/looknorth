@@ -30,8 +30,8 @@ public class ProductsInProductionFragment extends Fragment {
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        getActivity().setTitle(R.string.products_in_production_name);
-        Toast.makeText(getActivity(), R.string.products_in_production_name, Toast.LENGTH_SHORT);
+        getActivity().setTitle(R.string.name_products_in_production);
+        Toast.makeText(getActivity(), R.string.name_products_in_production, Toast.LENGTH_SHORT);
         return view;
     }
 }

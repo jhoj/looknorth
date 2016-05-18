@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by jakup on 4/13/16.
  */
-public class Machine {
+public class Machine implements IMachineRepository {
     public int machineNumber;
     public String machineName;
     public Product currentProduct;
@@ -56,5 +56,20 @@ public class Machine {
         }
 
         return machines;
+    }
+
+    @Override
+    public String toString() {
+        return "Machine{" +
+                "machineNumber=" + machineNumber +
+                ", machineName='" + machineName + '\'' +
+                ", currentProduct=" + currentProduct +
+                ", productionCounterList=" + productionCounterList +
+                '}';
+    }
+
+    @Override
+    public List<Machine> getMachines() {
+        return new Machine().getDbMachines();
     }
 }

@@ -1,24 +1,26 @@
 package fo.looknorth.logik;
 
+import android.app.Application;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 import fo.looknorth.model.Machine;
-import fo.looknorth.model.OilUsageEntry;
+import fo.looknorth.model.OilConsumptionEntry;
 import fo.looknorth.model.Product;
 import fo.looknorth.model.ProductionCounter;
 
 /**
  * Created by jakup on 4/27/16.
  */
-public class Logik {
+public class Logik extends Application {
 
     public static Logik instance;
 
     public Machine[] machines;
-    public HashMap<Integer, OilUsageEntry[]> oilUsageLinePoints;
+    public HashMap<Integer, OilConsumptionEntry[]> oilUsageLinePoints;
     public String[] records;
     public ArrayList<Product> productList;
 
@@ -26,6 +28,7 @@ public class Logik {
         /******************************
         *       OIL USAGE
         ******************************/
+        //annars skal tað vera 6, tvs. oil og production.
         machines = new Machine[5];
         machines[0] = new Machine();
         machines[1] = new Machine();
@@ -38,29 +41,29 @@ public class Logik {
         machines[3].machineNumber = 4;
         machines[4].machineNumber = 5;
 
-        OilUsageEntry[] totalEntries = new OilUsageEntry[2];
-        totalEntries[0] = new OilUsageEntry("Total", 0.9f, 0.8f);
-        totalEntries[1] = new OilUsageEntry("Total", 0.9f, 0.7f);
+        OilConsumptionEntry[] totalEntries = new OilConsumptionEntry[2];
+        totalEntries[0] = new OilConsumptionEntry("Total", 0.9f, 0.8f);
+        totalEntries[1] = new OilConsumptionEntry("Total", 0.9f, 0.7f);
 
-        OilUsageEntry[] m1Entries = new OilUsageEntry[2];
-        m1Entries[0] = new OilUsageEntry("M1", 0.9f, 0.3f);
-        m1Entries[1] = new OilUsageEntry("M1", 0.9f, 0.3f);
+        OilConsumptionEntry[] m1Entries = new OilConsumptionEntry[2];
+        m1Entries[0] = new OilConsumptionEntry("M1", 0.9f, 0.3f);
+        m1Entries[1] = new OilConsumptionEntry("M1", 0.9f, 0.3f);
 
-        OilUsageEntry[] m2Entries = new OilUsageEntry[2];
-        m2Entries[0] = new OilUsageEntry("M2", 0.2f, 0.8f);
-        m2Entries[1] = new OilUsageEntry("M2", 0.2f, 0.7f);
+        OilConsumptionEntry[] m2Entries = new OilConsumptionEntry[2];
+        m2Entries[0] = new OilConsumptionEntry("M2", 0.2f, 0.8f);
+        m2Entries[1] = new OilConsumptionEntry("M2", 0.2f, 0.7f);
 
-        OilUsageEntry[] m3Entries = new OilUsageEntry[2];
-        m3Entries[0] = new OilUsageEntry("M3", 0.2f, 0.8f);
-        m3Entries[1] = new OilUsageEntry("M3", 0.2f, 0.7f);
+        OilConsumptionEntry[] m3Entries = new OilConsumptionEntry[2];
+        m3Entries[0] = new OilConsumptionEntry("M3", 0.2f, 0.8f);
+        m3Entries[1] = new OilConsumptionEntry("M3", 0.2f, 0.7f);
 
-        OilUsageEntry[] m4Entries = new OilUsageEntry[2];
-        m4Entries[0] = new OilUsageEntry("M4", 0.2f, 0.8f);
-        m4Entries[1] = new OilUsageEntry("M4", 0.2f, 0.7f);
+        OilConsumptionEntry[] m4Entries = new OilConsumptionEntry[2];
+        m4Entries[0] = new OilConsumptionEntry("M4", 0.2f, 0.8f);
+        m4Entries[1] = new OilConsumptionEntry("M4", 0.2f, 0.7f);
 
-        OilUsageEntry[] m5Entries = new OilUsageEntry[2];
-        m5Entries[0] = new OilUsageEntry("M5", 0.2f, 0.8f);
-        m5Entries[1] = new OilUsageEntry("M5", 0.2f, 0.7f);
+        OilConsumptionEntry[] m5Entries = new OilConsumptionEntry[2];
+        m5Entries[0] = new OilConsumptionEntry("M5", 0.2f, 0.8f);
+        m5Entries[1] = new OilConsumptionEntry("M5", 0.2f, 0.7f);
 
         oilUsageLinePoints = new HashMap<>();
         oilUsageLinePoints.put(0, totalEntries);  // total

@@ -6,15 +6,15 @@
             <item
                 android:id="@+id/item_prodcution"
                 android:icon="@drawable/ic_production"
-                android:title="@string/production_menu_name" />
+                android:title="@string/menu_name_production" />
             <item
                 android:id="@+id/item_oil_usage"
-                android:icon="@drawable/ic_oil_usage"
-                android:title="@string/oil_usage_menu_name" />
+                android:icon="@drawable/ic_oil_consumption"
+                android:title="@string/menu_name_oil_consumption" />
             <item
                 android:id="@+id/item_set_active_products"
                 android:icon="@drawable/ic_set_product"
-                android:title="@string/set_active_products_menu_name" />
+                android:title="@string/menu_name_products_in_production" />
 
         </menu>
     </item>

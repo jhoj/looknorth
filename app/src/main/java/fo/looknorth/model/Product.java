@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by jakup on 4/13/16.
  */
-public class Product {
+public class Product implements IProductRepository {
 
     public int id;
     public String name;
@@ -50,6 +50,10 @@ public class Product {
         }
 
         return products;
+    }
+
+    public List<Product> getProducts() {
+        return new Product().getDbProducts();
     }
 
 }

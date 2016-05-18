@@ -31,8 +31,8 @@ public class ProductionFragment extends Fragment {
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        Toast.makeText(getActivity(), R.string.production, Toast.LENGTH_SHORT).show();
-        getActivity().setTitle(R.string.production);
+        Toast.makeText(getActivity(), R.string.name_production, Toast.LENGTH_SHORT).show();
+        getActivity().setTitle(R.string.name_production);
         return view;
     }
 }

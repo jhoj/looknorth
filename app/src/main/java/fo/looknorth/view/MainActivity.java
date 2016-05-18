@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.item_oil_usage:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_activity_fragment_content, new OilUsageFragment())
+                        .replace(R.id.main_activity_fragment_content, new OilConsumptionFragment())
                         .commit();
                 break;
             case R.id.item_prodcution:

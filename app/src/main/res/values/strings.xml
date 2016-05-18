@@ -1,16 +1,13 @@
 <resources>
     <string name="app_name">Looknorth</string>
-    <string name="oil_usage_name">Oil Usage</string>
-    <string name="products_in_production_name">Products in Production</string>
-    <string name="production">Production</string>
+    <string name="name_oil_consumption">Oil Consumption</string>
+    <string name="name_products_in_production">Products in Production</string>
+    <string name="name_production">Production</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <!--menu text  ENGLISH -->
-    <string name="production_menu_name">Production</string>
-    <string name="oil_usage_menu_name">Oil Usage</string>
-    <string name="set_active_products_menu_name">Products in production</string>
-    <string name="title_oil_usage">Oil Usage</string>
+    <string name="menu_name_production">Production</string>
+    <string name="menu_name_oil_consumption">Oil Consumption</string>
+    <string name="menu_name_products_in_production">Products in production</string>
     <string name="fragment_title_machine">Machine %1$d</string>
     <string name="fragment_title_oil_usage">Total usage</string>
     <string name="fragment_title_production">Daily Production</string>

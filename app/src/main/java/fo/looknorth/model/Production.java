@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by jakup on 4/13/16.
  */
-public class Production {
+public class Production implements IProductionRepository {
 
     private int id;
     private int machineId;
@@ -73,7 +73,7 @@ public class Production {
             is.read(b);
             String str = new String(b, "UTF-8");
             Gson gson = new Gson();
-            Type productionType = new TypeToken<Collection<Machine>>(){}.getType();
+            Type productionType = new TypeToken<Collection<Production>>(){}.getType();
             productionList =  gson.fromJson(str, productionType);
 
         } catch (Exception ex) {
@@ -83,4 +83,18 @@ public class Production {
         return productionList;
     }
 
+    @Override
+    public String toString() {
+        return "Production{" +
+                "id=" + id +
+                ", machineId=" + machineId +
+                ", productId=" + productId +
+                ", recorded='" + recorded + '\'' +
+                '}';
+    }
+
+    @Override
+    public List<Production> getProductions() {
+        return new Production().getDbProduction();
+    }
 }
