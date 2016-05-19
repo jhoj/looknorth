@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -14,12 +13,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import fo.looknorth.model.Machine;
+import fo.looknorth.model.OilConsumption;
 import fo.looknorth.model.OilConsumptionEntry;
 import fo.looknorth.model.Product;
 import fo.looknorth.model.ProductionCounter;
 import fo.looknorth.mqtt.LooknorthMqttCallback;
 import fo.looknorth.mqtt.MqttActionListener;
-import fo.looknorth.mqtt.MqttSubscriber;
 
 /**
  * Created by jakup on 4/27/16.
@@ -31,9 +30,10 @@ public class Logik extends Application {
     public MqttAndroidClient mqttClient;
     private final String broker = "tcp://10.0.0.10:1883";
     private final String clientId = "androidSampleClient";
-    private final String[] topics = {"looknorth/production/oil-usage/#", "looknorth/production/machines/#"};
+    private final String[] topics = {"looknorth/production/oil-consumption/#", "looknorth/production/machines/#"};
     private final int qos = 2;
 
+    public OilConsumption oilConsumption = new OilConsumption();
     public Machine[] machines;
     public HashMap<Integer, OilConsumptionEntry[]> oilUsageLinePoints;
     public String[] records;

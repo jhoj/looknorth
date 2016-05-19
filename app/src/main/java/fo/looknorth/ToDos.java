@@ -10,10 +10,10 @@ public class ToDos {
     // TODO: 5/12/16 get recommended usage for this product 
 
     // TODO: 5/12/16 run method, runnable ,
-    // TODO: 5/12/16  mqtt service
+    // doneTODO: 5/12/16  mqtt service
     // // TODO: 5/18/16 add translations FO,DK,ENG
     // // TODO: 5/18/16 font of text
     // // TODO: 5/18/16 add list view to oil consumption
     // TODO: 5/19/16 declare screen size report
-    // todo1: 5/18/16 test db getters -- done
+    // donetodo: 5/18/16 test db getters -- done
 }

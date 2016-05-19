@@ -13,7 +13,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import fo.looknorth.app.app.R;
 import fo.looknorth.logik.Logik;
-import fo.looknorth.mqtt.MqttSubscriber;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

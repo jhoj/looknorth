@@ -7,4 +7,6 @@ import java.util.List;
  */
 public interface IOilConsumptionRepository {
     List<OilConsumption> getOilConsumptions();
+    OilConsumption getLastEntry();
+    OilConsumption getLastEntry(String url);
 }

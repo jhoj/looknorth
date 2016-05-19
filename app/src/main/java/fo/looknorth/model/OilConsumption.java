@@ -95,4 +95,50 @@ public class OilConsumption implements IOilConsumptionRepository {
     public List<OilConsumption> getOilConsumptions() {
         return new OilConsumption().getDbOilConsumption();
     }
+
+    @Override
+    public OilConsumption getLastEntry() {
+        OilConsumption oilConsumption = null;
+
+        try {
+            InputStream is = new URL("http://localhost:4567/oil-consumption/last").openStream();
+
+            byte b[] = new byte[is.available()]; // kun små filer
+            is.read(b);
+            String str = new String(b, "UTF-8");
+            Gson gson = new Gson();
+            oilConsumption = gson.fromJson(str, OilConsumption.class);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return oilConsumption;
+    }
+
+    @Override
+    public OilConsumption getLastEntry(String url) {
+        OilConsumption oilConsumption = null;
+
+        try {
+            InputStream is = new URL(url).openStream();
+
+            byte b[] = new byte[is.available()]; // kun små filer
+            is.read(b);
+            String str = new String(b, "UTF-8");
+            Gson gson = new Gson();
+            oilConsumption = gson.fromJson(str, OilConsumption.class);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return oilConsumption;
+    }
+
+    public static void main(String[] args) {
+        OilConsumption o = new OilConsumption();
+        OilConsumption o1 = o.getLastEntry();
+        System.out.println(o1.toString());
+    }
 }
