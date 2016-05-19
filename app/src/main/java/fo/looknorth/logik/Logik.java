@@ -1,6 +1,12 @@
 package fo.looknorth.logik;
 
 import android.app.Application;
+import android.content.Context;
+
+import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,6 +17,9 @@ import fo.looknorth.model.Machine;
 import fo.looknorth.model.OilConsumptionEntry;
 import fo.looknorth.model.Product;
 import fo.looknorth.model.ProductionCounter;
+import fo.looknorth.mqtt.LooknorthMqttCallback;
+import fo.looknorth.mqtt.MqttActionListener;
+import fo.looknorth.mqtt.MqttSubscriber;
 
 /**
  * Created by jakup on 4/27/16.
@@ -19,12 +28,32 @@ public class Logik extends Application {
 
     public static Logik instance;
 
+    public MqttAndroidClient mqttClient;
+    private final String broker = "tcp://10.0.0.10:1883";
+    private final String clientId = "androidSampleClient";
+    private final String[] topics = {"looknorth/production/oil-usage/#", "looknorth/production/machines/#"};
+    private final int qos = 2;
+
     public Machine[] machines;
     public HashMap<Integer, OilConsumptionEntry[]> oilUsageLinePoints;
     public String[] records;
     public ArrayList<Product> productList;
 
+    public void initMqtt(Context context) {
+        mqttClient = new MqttAndroidClient(context, broker, clientId);
+        mqttClient.setCallback(new LooknorthMqttCallback());
+        try {
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setUserName("android");
+            options.setPassword("1qaz2wsx".toCharArray());
+            mqttClient.connect(options, null, new MqttActionListener(mqttClient, topics, qos));
+        } catch (MqttException ex) {
+
+        }
+    }
+
     public void lavTestData() {
+
         /******************************
         *       OIL USAGE
         ******************************/
@@ -173,4 +202,5 @@ public class Logik extends Application {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
         return sdf.format(Calendar.getInstance().getTime());
     }
+
 }

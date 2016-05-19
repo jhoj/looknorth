@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,6 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
 
         currentProductText = (TextView) rootView.findViewById(R.id.currently_active_product_text);
         productListSpinner = (Spinner) rootView.findViewById(R.id.product_list);
-
         ArrayAdapter arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, Logik.instance.productList) {
             @Override
             public View getView(int position, View cachedView, ViewGroup parent) {

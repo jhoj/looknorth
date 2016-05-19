@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
+
 import fo.looknorth.app.app.R;
 import fo.looknorth.logik.Logik;
+import fo.looknorth.mqtt.MqttSubscriber;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         Logik.instance = new Logik();
+        Logik.instance.initMqtt(this.getApplicationContext());
         Logik.instance.lavTestData();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -37,6 +41,18 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.main_activity_fragment_content, new ProductsInProductionFragment())
                     .commit();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            Logik.instance.mqttClient.unregisterResources();
+            Logik.instance.mqttClient.disconnect();
+            Logik.instance.mqttClient = null;
+        } catch (MqttException e) {
+            e.printStackTrace();
         }
     }
 
