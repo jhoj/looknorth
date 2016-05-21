@@ -61,7 +61,7 @@ public class RecommendedOilConsumption implements IRecommendedOilConsumptionRepo
             this.machineCombination = machineCombination;
         }
 
-    public List<RecommendedOilConsumption> getDbAverageOilConsumption() {
+    public List<RecommendedOilConsumption> getDbRecommededOilConsumption() {
         List<RecommendedOilConsumption> recommendedOilConsumptionList = null;
 
         try {
@@ -93,6 +93,32 @@ public class RecommendedOilConsumption implements IRecommendedOilConsumptionRepo
 
     @Override
     public List<RecommendedOilConsumption> getAverageOilConsumptions() {
-        return new RecommendedOilConsumption().getDbAverageOilConsumption();
+        return new RecommendedOilConsumption().getDbRecommededOilConsumption();
+    }
+
+    @Override
+    public RecommendedOilConsumption getRecommendedOilConsumption(String productCombination) {
+        RecommendedOilConsumption recommendedOilConsumption = null;
+
+        try {
+            InputStream is = new URL("http://localhost:4567/average-oil-consumption/product-combination/" + productCombination).openStream();
+
+            byte b[] = new byte[is.available()]; // kun små filer
+            is.read(b);
+            String str = new String(b, "UTF-8");
+            Gson gson = new Gson();
+            recommendedOilConsumption =  gson.fromJson(str, RecommendedOilConsumption.class);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return recommendedOilConsumption;
+    }
+
+    public static void main(String[] args) {
+        RecommendedOilConsumption r = new RecommendedOilConsumption();
+        RecommendedOilConsumption r1 = r.getRecommendedOilConsumption("2001,2,3,4,5");
+        System.out.println(r1.getAverage());
     }
 }

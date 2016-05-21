@@ -7,4 +7,5 @@ import java.util.List;
  */
 public interface IRecommendedOilConsumptionRepository {
     List<RecommendedOilConsumption> getAverageOilConsumptions();
+    RecommendedOilConsumption getRecommendedOilConsumption(String productCombination);
 }

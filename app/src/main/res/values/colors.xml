@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="looknorthPrimary">#8B1D04</color>
+    <color name="looknorthPrimary">#8b1d04</color>
     <color name="looknorthLight">#CE5438</color>
     <color name="looknorthDark">#531D11</color>
     <color name="looknorthBackgound">#EAE8EB</color>

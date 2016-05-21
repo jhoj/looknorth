@@ -61,11 +61,11 @@ public class OilConsumption implements IOilConsumptionRepository {
         this.recorded = recorded;
     }
 
-    public List<OilConsumption> getDbOilConsumption() {
+    private List<OilConsumption> getDbOilConsumption() {
         List<OilConsumption> oilConsumptionList = null;
 
         try {
-            InputStream is = new URL("http://localhost:4567/oil-usage").openStream();
+            InputStream is = new URL("http://localhost:4567/oil-consumption").openStream();
 
             byte b[] = new byte[is.available()]; // kun små filer
             is.read(b);
@@ -138,6 +138,13 @@ public class OilConsumption implements IOilConsumptionRepository {
 
     public static void main(String[] args) {
         OilConsumption o = new OilConsumption();
+
+        List<OilConsumption> list = o.getOilConsumptions();
+
+        for (OilConsumption o1 : list) {
+            System.out.println(o1.toString());
+        }
+
         OilConsumption o1 = o.getLastEntry();
         System.out.println(o1.toString());
     }

@@ -1,9 +1,13 @@
 package fo.looknorth.view;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +34,16 @@ public class ProductionFragment extends Fragment {
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
         pagerSlidingTabStrip.setViewPager(viewPager);
+        Typeface t = Typeface.create("casual", Typeface.ITALIC);
+        pagerSlidingTabStrip.setTypeface(t, R.style.myOwnFont);
 
         Toast.makeText(getActivity(), R.string.name_production, Toast.LENGTH_SHORT).show();
-        getActivity().setTitle(R.string.name_production);
+
+        SpannableString s = new SpannableString("Production");
+        s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getActivity().setTitle(s);
+
         return view;
     }
 }

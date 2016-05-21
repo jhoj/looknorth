@@ -8,12 +8,14 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Created by jakup on 4/13/16.
  */
-public class Machine implements IMachineRepository {
+public class Machine implements IMachineRepository, Comparable<Machine> {
     public int machineNumber;
     public String machineName;
     public Product currentProduct;
@@ -71,5 +73,40 @@ public class Machine implements IMachineRepository {
     @Override
     public List<Machine> getMachines() {
         return new Machine().getDbMachines();
+    }
+
+    @Override
+    public int compareTo(Machine another) {
+        Integer thisOne = this.machineNumber;
+        Integer anotherOne = another.machineNumber;
+
+        return thisOne.compareTo(anotherOne);
+    }
+
+
+
+
+    public static void main(String[] args) {
+
+        //compare machines
+
+        List<Machine> machines = new ArrayList<>();
+
+        //add them to list in reverse machine number.
+        for (int i = 5; i > 0; i--) {
+            Machine m = new Machine();
+            m.machineNumber = i;
+            machines.add(m);
+        }
+
+        for (Machine m: machines) {
+            System.out.println("Number " + m.machineNumber);
+        }
+
+        Collections.sort(machines);
+
+        for (Machine m: machines) {
+            System.out.println(m.machineNumber);
+        }
     }
 }

@@ -1,11 +1,16 @@
 package fo.looknorth.view;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -15,9 +20,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-
 import java.util.ArrayList;
-
 import fo.looknorth.app.app.R;
 import fo.looknorth.logik.Logik;
 import fo.looknorth.model.OilConsumptionEntry;
@@ -37,8 +40,9 @@ public class OilConsumptionContentFragment extends Fragment
             ColorTemplate.COLORFUL_COLORS[4]
     };
     private LineData data;
-
+    private ListView oilConsumptionList;
     Handler handler = new Handler();
+    Typeface t = Typeface.create("casual", Typeface.ITALIC);
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -70,8 +74,10 @@ public class OilConsumptionContentFragment extends Fragment
         lineChart.setScaleEnabled(false);
         lineChart.setDrawGridBackground(false);
         lineChart.setPinchZoom(false);
+        lineChart.setDescriptionTypeface(t);
 
         Legend l = lineChart.getLegend();
+        l.setTypeface(t);
         l.setForm(Legend.LegendForm.CIRCLE);
         l.setTextColor(ColorTemplate.getHoloBlue());
         l.setTextSize(16f);
@@ -82,18 +88,68 @@ public class OilConsumptionContentFragment extends Fragment
         xAxis.setAdjustXLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextSize(16f);
+        xAxis.setTypeface(t);
 
         YAxis yAxisLeft = lineChart.getAxisLeft();
         yAxisLeft.setTextColor(ColorTemplate.getHoloBlue());
         yAxisLeft.setAxisMaxValue(1.5f);
         yAxisLeft.setDrawGridLines(false);
         yAxisLeft.setTextSize(16f);
+        yAxisLeft.setTypeface(t);
 
         YAxis yAxisRight = lineChart.getAxisRight();
         yAxisRight.setDrawLabels(false);
 
         //add datasets for x values and actual and recommended usage.
         initDataForChart();
+
+        oilConsumptionList = (ListView) rootView.findViewById(R.id.oilConsumptionListView);
+
+//        //list that holds only 10 objects
+//        String[] recordingListData = new String[10];
+//
+//        String recorded1 = "10:23 21-07-16";
+//
+//        String liters1 = "1";
+//
+//        final String[] listersListData = new String[10];
+//
+//        for (int i = 0; i < 10; i++) {
+//            recordingListData[i] = i + i + ":" + i + i;
+//            listersListData[i] = ""+i;
+//        }
+//
+//        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_layout, R.id.timeTextView, recordingListData) {
+//          @Override
+//          public View getView(int position, View cachedView, ViewGroup parent) {
+//            View view = super.getView(position, cachedView, parent);
+//            TextView litersTextView = (TextView) view.findViewById(R.id.litersTextView);
+//
+//            litersTextView.setText(listersListData[position]);
+//
+//            return view;
+//            }
+//        };
+
+
+        String[] lande = {"Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal",};
+
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_layout, R.id.recordedTextView, lande) {
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View view = super.getView(position, convertView, parent);
+
+                TextView liters = (TextView) view.findViewById(R.id.litersTextView);
+                liters.setText("Land nummer " + position);
+
+                return view;
+            }
+
+        };
+
+        oilConsumptionList.setAdapter(adapter);
 
         return rootView;
     }
@@ -106,7 +162,6 @@ public class OilConsumptionContentFragment extends Fragment
             handler.postDelayed(updateLineChart, 1000); // run every second.
         }
     };
-
 
     @Override
     public void onResume() {
@@ -168,6 +223,7 @@ public class OilConsumptionContentFragment extends Fragment
         currentUsageDataSet.setColor(currentUsageColor);
         currentUsageDataSet.setCircleColor(currentUsageColor);
         currentUsageDataSet.setLineWidth(2.5f);
+        currentUsageDataSet.setValueTypeface(t);
 
         // add currentUsage to main dataset
         yValues.add(currentUsageDataSet);
@@ -199,8 +255,6 @@ public class OilConsumptionContentFragment extends Fragment
     }
 
     private String getTime() {
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-//            return simpleDateFormat.format(Calendar.getInstance().getTime());
         OilConsumptionEntry[] entries = Logik.instance.oilUsageLinePoints.get(tabIndex);
         int last = entries.length - 1;
         return entries[last].time;

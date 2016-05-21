@@ -1,6 +1,7 @@
 package fo.looknorth.view;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
     public int tabIndex;
     private BarChart barChart;
     private PieChart mChart;
+    Typeface t = Typeface.create("casual", Typeface.ITALIC);
 
     public ProductionContentFragment() {
     }
@@ -72,6 +74,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         barChart.setDrawValueAboveBar(true);
         barChart.setDescription("Today's Production");
         barChart.setPinchZoom(false);
+        barChart.setDescriptionTypeface(t);
 
         barChart.setDrawGridBackground(false);
         // barChart.setDrawYLabels(false);
@@ -80,12 +83,14 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(5);
+        xAxis.setTypeface(t);
 
         YAxis leftAxis = barChart.getAxisLeft();
         leftAxis.setLabelCount(8);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
         leftAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
+        leftAxis.setTypeface(t);
 
         YAxis rightAxis = barChart.getAxisRight();
         rightAxis.setEnabled(false);
@@ -96,13 +101,17 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         l.setFormSize(9f);
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
+        l.setTypeface(t);
 
         setBarData();
 
+
         mChart = (PieChart) rootView.findViewById(R.id.pie_chart);
         mChart.setUsePercentValues(true);
+        mChart.setDescriptionTypeface(t);
 
         mChart.setCenterText("Daily Production");
+        mChart.setCenterTextTypeface(t);
         mChart.setDescription("");
         mChart.setDrawHoleEnabled(true);
         mChart.setHoleColor(Color.WHITE);
@@ -121,6 +130,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         setPieData();
 
         Legend pieLegend = mChart.getLegend();
+        pieLegend.setTypeface(t);
         pieLegend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
         pieLegend.setXEntrySpace(7f);
         pieLegend.setYEntrySpace(0f);
@@ -153,6 +163,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         PieDataSet dataSet = new PieDataSet(yVals, "");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
+        dataSet.setValueTypeface(t);
 
         // add a lot of colors
 
@@ -175,6 +186,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         data.setValueFormatter(new PercentFormatter());
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
+        data.setValueTypeface(t);
         mChart.setData(data);
 
         mChart.invalidate();
@@ -215,6 +227,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
 
         BarData data = new BarData(xVals, dataSets);
         data.setValueTextSize(10f);
+        data.setValueTypeface(t);
         barChart.setData(data);
     }
 

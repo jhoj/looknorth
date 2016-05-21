@@ -3,12 +3,21 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:button">@style/myOwnFont</item>
+        <item name="android:text">@style/myOwnFont</item>
+        <item name="android:textViewStyle">@style/myOwnFont</item>
+        <item name="android:titleTextStyle">@style/myOwnFont</item>
+        <item name="android:editTextStyle">@style/myOwnFont</item>"
+
         <item name="colorPrimary">@color/looknorthPrimary</item>
         <item name="colorPrimaryDark">@color/looknorthDark</item>
         <item name="colorAccent">@color/looknorthPrimary</item>
         <item name="android:colorBackground">@color/looknorthBackgound</item>
     </style>
 
+    <style name="myOwnFont" parent="android:Widget.TextView">
+        <item name="android:fontFamily">casual</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

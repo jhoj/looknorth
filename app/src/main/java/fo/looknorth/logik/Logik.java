@@ -2,6 +2,7 @@ package fo.looknorth.logik;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -26,9 +27,10 @@ import fo.looknorth.mqtt.MqttActionListener;
 public class Logik extends Application {
 
     public static Logik instance;
+    public Handler handler = new Handler();
 
     public MqttAndroidClient mqttClient;
-    private final String broker = "tcp://10.0.0.10:1883";
+    private final String broker = "tcp://looknorthserver.cloudapp.net:1883";
     private final String clientId = "androidSampleClient";
     private final String[] topics = {"looknorth/production/oil-consumption/#", "looknorth/production/machines/#"};
     private final int qos = 2;
@@ -46,7 +48,8 @@ public class Logik extends Application {
             MqttConnectOptions options = new MqttConnectOptions();
             options.setUserName("android");
             options.setPassword("1qaz2wsx".toCharArray());
-            mqttClient.connect(options, null, new MqttActionListener(mqttClient, topics, qos));
+            mqttClient.connect(null, new MqttActionListener(mqttClient, topics, qos));
+            //mqttClient.connect(options, null, new MqttActionListener(mqttClient, topics, qos));
         } catch (MqttException ex) {
 
         }
