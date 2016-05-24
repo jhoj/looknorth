@@ -1,6 +1,7 @@
 package fo.looknorth.view;
 
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,15 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.TypefaceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 
+import com.firebase.client.Firebase;
+
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 import fo.looknorth.utility.CustomTypefaceSpan;
 
 public class MainActivity extends AppCompatActivity
@@ -28,11 +30,16 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Logik.instance.initMqtt(this.getApplicationContext());
 
-// Update the action bar title with the TypefaceSpan instance
+        if (savedInstanceState == null) {
+
+        }
+        //Firebase.setAndroidContext(this);
+        //Firebase firebase = new Firebase("https://looknorth.firebaseio.com/");
+       // firebase.child("v0").child("logik").setValue(LooknorthLogic.instance);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,10 +80,10 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         try {
-            if (Logik.instance.mqttClient != null) {
-                Logik.instance.mqttClient.unregisterResources();
-                Logik.instance.mqttClient.disconnect();
-                Logik.instance.mqttClient = null;
+            if (LooknorthLogic.instance.mqttClient != null) {
+                LooknorthLogic.instance.mqttClient.unregisterResources();
+                LooknorthLogic.instance.mqttClient.disconnect();
+                LooknorthLogic.instance.mqttClient = null;
             }
         } catch (MqttException e) {
             e.printStackTrace();

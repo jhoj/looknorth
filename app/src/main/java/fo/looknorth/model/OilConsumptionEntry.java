@@ -8,6 +8,8 @@ public class OilConsumptionEntry {
     public float recommendedUsage;
     public float actualUsage;
 
+    public OilConsumptionEntry() {}
+
     public OilConsumptionEntry(String time, float recommendedUsage, float actualUsage) {
         this.time = time;
         this.recommendedUsage = recommendedUsage;

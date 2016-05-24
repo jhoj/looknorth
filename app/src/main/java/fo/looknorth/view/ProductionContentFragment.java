@@ -24,12 +24,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
+import com.github.mikephil.charting.animation.AnimationEasing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 import fo.looknorth.model.Machine;
 
 import fo.looknorth.model.ProductionCounter;
@@ -38,7 +39,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
 
     public int tabIndex;
     private BarChart barChart;
-    private PieChart mChart;
+    private PieChart pieChart;
     Typeface t = Typeface.create("casual", Typeface.ITALIC);
 
     public ProductionContentFragment() {
@@ -66,10 +67,14 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         tabIndex = getArguments().getInt("tabIndex");
 
         TextView dateText = (TextView) rootView.findViewById(R.id.dateText);
-        dateText.setText(Logik.instance.getDate());
+        dateText.setText(LooknorthLogic.instance.getDate());
 
+        // find barchart defined in xml
         barChart = (BarChart) rootView.findViewById(R.id.bar_chart);
+
+        // add a listener for click events
         barChart.setOnChartValueSelectedListener(this);
+
         barChart.setDrawBarShadow(false);
         barChart.setDrawValueAboveBar(true);
         barChart.setDescription("Today's Production");
@@ -106,30 +111,30 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         setBarData();
 
 
-        mChart = (PieChart) rootView.findViewById(R.id.pie_chart);
-        mChart.setUsePercentValues(true);
-        mChart.setDescriptionTypeface(t);
+        pieChart = (PieChart) rootView.findViewById(R.id.pie_chart);
+        pieChart.setUsePercentValues(true);
+        pieChart.setDescriptionTypeface(t);
 
-        mChart.setCenterText("Daily Production");
-        mChart.setCenterTextTypeface(t);
-        mChart.setDescription("");
-        mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColor(Color.WHITE);
+        pieChart.setCenterText("Daily Production");
+        pieChart.setCenterTextTypeface(t);
+        pieChart.setDescription("");
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.WHITE);
 
-        mChart.setHoleRadius(58f);
-        mChart.setTransparentCircleRadius(61f);
+        pieChart.setHoleRadius(58f);
+        pieChart.setTransparentCircleRadius(61f);
 
-        mChart.setDrawCenterText(true);
+        pieChart.setDrawCenterText(true);
 
-        mChart.setRotationAngle(0);
+        pieChart.setRotationAngle(0);
         // enable rotation of the chart by touch
-        mChart.setRotationEnabled(true);
+        pieChart.setRotationEnabled(true);
         // add a selection listener
-        mChart.setOnChartValueSelectedListener(this);
+        pieChart.setOnChartValueSelectedListener(this);
 
         setPieData();
 
-        Legend pieLegend = mChart.getLegend();
+        Legend pieLegend = pieChart.getLegend();
         pieLegend.setTypeface(t);
         pieLegend.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
         pieLegend.setXEntrySpace(7f);
@@ -143,15 +148,16 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         //todo add animation to the pie
         ArrayList<String> xVals = new ArrayList<>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
-        ArrayList<Machine> machines = new ArrayList<>(Arrays.asList(Logik.instance.machines));
+        ArrayList<Machine> machines = (ArrayList<Machine>) LooknorthLogic.instance.machines;
         Machine machine = machines.get(tabIndex);  //this is the total section
 
         for (int i = 0; i < machine.productionCounterList.size(); i++)
         {
-            //it has 2 entries
-            //two names added to pie chart.
+            // it has 2 entries
+            // two names added to pie chart.
             xVals.add(machine.productionCounterList.get(i).product.name);
-            //shows the product percentage of the whole production
+
+            // shows the product percentage of the whole production
             float pieTotal = machine.getTotalProducedItems();
             float productionQuantity = machine.productionCounterList.get(i).quantityProduced;
             float fraction = productionQuantity / pieTotal;
@@ -187,14 +193,16 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
         data.setValueTypeface(t);
-        mChart.setData(data);
+        pieChart.setData(data);
 
-        mChart.invalidate();
+        pieChart.animateX(700, AnimationEasing.EasingOption.EaseInCirc);
+
+        pieChart.invalidate();
     }
 
     private void setBarData() {
         //todo add animation to the bars
-        Machine m = Logik.instance.machines[tabIndex];
+        Machine m = LooknorthLogic.instance.machines.get(tabIndex);
         ArrayList<String> xVals = new ArrayList<>();
 
         for (ProductionCounter p: m.productionCounterList) {
@@ -229,6 +237,10 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         data.setValueTextSize(10f);
         data.setValueTypeface(t);
         barChart.setData(data);
+
+        barChart.animateY(700, AnimationEasing.EasingOption.EaseInCubic);
+
+        barChart.invalidate();
     }
 
     @Override

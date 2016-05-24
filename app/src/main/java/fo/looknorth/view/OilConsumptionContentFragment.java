@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import fo.looknorth.app.app.R;
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 import fo.looknorth.model.OilConsumptionEntry;
 
 public class OilConsumptionContentFragment extends Fragment
@@ -32,7 +31,7 @@ public class OilConsumptionContentFragment extends Fragment
 
     //MP Chart
     private LineChart lineChart;
-    private int[] mColors = new int[] {
+    private int[] colors = new int[] {
             ColorTemplate.COLORFUL_COLORS[0],
             ColorTemplate.COLORFUL_COLORS[1],
             ColorTemplate.COLORFUL_COLORS[2],
@@ -105,49 +104,32 @@ public class OilConsumptionContentFragment extends Fragment
 
         oilConsumptionList = (ListView) rootView.findViewById(R.id.oilConsumptionListView);
 
-//        //list that holds only 10 objects
-//        String[] recordingListData = new String[10];
-//
-//        String recorded1 = "10:23 21-07-16";
-//
-//        String liters1 = "1";
-//
-//        final String[] listersListData = new String[10];
-//
-//        for (int i = 0; i < 10; i++) {
-//            recordingListData[i] = i + i + ":" + i + i;
-//            listersListData[i] = ""+i;
-//        }
-//
-//        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_layout, R.id.timeTextView, recordingListData) {
-//          @Override
-//          public View getView(int position, View cachedView, ViewGroup parent) {
-//            View view = super.getView(position, cachedView, parent);
-//            TextView litersTextView = (TextView) view.findViewById(R.id.litersTextView);
-//
-//            litersTextView.setText(listersListData[position]);
-//
-//            return view;
-//            }
-//        };
+        //list that holds only 10 objects
+        String[] recordingListData = new String[10];
 
+        String recorded1 = "10:23 21-07-16";
 
-        String[] lande = {"Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal", "Danmark", "Norge", "Sverige", "Finland", "Holland", "Italien", "Nepal",};
+        String liters1 = "1";
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_layout, R.id.recordedTextView, lande) {
+        final String[] listersListData = new String[10];
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+        for (int i = 0; i < 10; i++) {
+            recordingListData[i] = i + i + ":" + i + i;
+            listersListData[i] = ""+i;
+        }
 
-                View view = super.getView(position, convertView, parent);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_layout, R.id.recordedTextView, recordingListData) {
+          @Override
+          public View getView(int position, View cachedView, ViewGroup parent) {
+            View view = super.getView(position, cachedView, parent);
+            TextView litersTextView = (TextView) view.findViewById(R.id.litersTextView);
 
-                TextView liters = (TextView) view.findViewById(R.id.litersTextView);
-                liters.setText("Land nummer " + position);
+            litersTextView.setText(listersListData[position]);
 
-                return view;
+            return view;
             }
-
         };
+
 
         oilConsumptionList.setAdapter(adapter);
 
@@ -218,7 +200,7 @@ public class OilConsumptionContentFragment extends Fragment
         LineDataSet currentUsageDataSet = new LineDataSet(currentUsageValues, "Current oil usage in liters");
 
         // set the color to green
-        int currentUsageColor = mColors[3];
+        int currentUsageColor = colors[3];
 
         currentUsageDataSet.setColor(currentUsageColor);
         currentUsageDataSet.setCircleColor(currentUsageColor);
@@ -236,8 +218,8 @@ public class OilConsumptionContentFragment extends Fragment
         recommendedUsageDataSet.setDrawCircles(false);
 
         // red color
-        int rColor = mColors[1];
-        recommendedUsageDataSet.setColor(rColor);
+        int redColor = colors[1];
+        recommendedUsageDataSet.setColor(redColor);
         recommendedUsageDataSet.setLineWidth(2.5f);
         recommendedUsageDataSet.setLabel("Recommeded");
 
@@ -255,19 +237,19 @@ public class OilConsumptionContentFragment extends Fragment
     }
 
     private String getTime() {
-        OilConsumptionEntry[] entries = Logik.instance.oilUsageLinePoints.get(tabIndex);
+        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
         int last = entries.length - 1;
         return entries[last].time;
     }
 
     private float getRecommendedUsage() {
-        OilConsumptionEntry[] entries = Logik.instance.oilUsageLinePoints.get(tabIndex);
+        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
         int last = entries.length - 1;
         return entries[last].recommendedUsage;
     }
 
     private float getActualUsage() {
-        OilConsumptionEntry[] entries = Logik.instance.oilUsageLinePoints.get(tabIndex);
+        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
         int last = entries.length - 1;
         return entries[last].actualUsage;
     }

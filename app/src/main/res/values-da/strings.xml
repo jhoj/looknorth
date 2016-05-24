@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Looknorth</string>
+    <string name="slogan">Looking Forward</string>
+    <string name="name_oil_consumption">Olie forbrug</string>
+    <string name="name_products_in_production">Produkter i produktion</string>
+    <string name="name_production">Produktion</string>
+    <string name="navigation_drawer_open">Åbn</string>
+    <string name="navigation_drawer_close">Luk</string>
+    <string name="menu_name_production">Produktion</string>
+    <string name="menu_name_oil_consumption">Olie forbrug</string>
+    <string name="menu_name_products_in_production">Produkter i produktion</string>
+    <string name="fragment_title_machine">Maskine %1$d</string>
+    <string name="fragment_title_oil_usage">Totalt olieforbrug</string>
+    <string name="fragment_title_production">Daglig produktion</string>
+
+</resources>

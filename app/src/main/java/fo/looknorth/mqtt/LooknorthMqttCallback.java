@@ -1,16 +1,12 @@
 package fo.looknorth.mqtt;
 
-    import android.os.AsyncTask;
     import android.util.Log;
 
     import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
     import org.eclipse.paho.client.mqttv3.MqttCallback;
     import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-    import fo.looknorth.logik.Logik;
-    import fo.looknorth.model.Machine;
-    import fo.looknorth.model.OilConsumption;
-    import fo.looknorth.model.Production;
+    import fo.looknorth.logic.LooknorthLogic;
     import fo.looknorth.utility.MqttMessageToURLTranslator;
 
 /**
@@ -26,33 +22,22 @@ package fo.looknorth.mqtt;
         @Override
         public void messageArrived(String topic, MqttMessage message) throws Exception {
             Log.d("ActionListener", "Message Arrived!: " + topic + ": " + new String(message.getPayload()));
-            MqttMessageToURLTranslator mmtt = new MqttMessageToURLTranslator();
-            final String url = mmtt.readMessage(topic, message);
 
-            if (mmtt.subject.equals("oil-consumption")) {
-                //update
+            if (topic.contains("oil-consumption")) {
+                // create new oil consumption point
 
+                //add it to the dataset
 
-                new AsyncTask() {
-                    @Override
-                    protected OilConsumption doInBackground(Object... arg) {
-                        try {
-                            OilConsumption o = Logik.instance.oilConsumption.getLastEntry(url);
-                            return o;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            System.out.println("here");
-                            return null;
-                        }
-                    }
+                //call update
+            } else if (topic.contains("machines")) {
+                // create new oil consumption point
 
-                    @Override
-                    protected void onPostExecute(Object o) {
-                        System.out.println((OilConsumption)o);
-                        }
-                }.execute();
-
+                //add it to dataset
             }
+
+            //LooknorthLogic.instance.
+
+
         }
 
         @Override

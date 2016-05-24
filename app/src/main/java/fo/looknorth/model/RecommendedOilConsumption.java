@@ -12,15 +12,14 @@ import java.util.List;
 /**
  * Created by jakup on 4/13/16.
  */
-public class RecommendedOilConsumption implements IRecommendedOilConsumptionRepository {
+public class RecommendedOilConsumption {
     // TODO: 5/12/16 get data, add to view 
         private int id;
         private String machineCombination;
         private String productCombination;
         private float average;
 
-        public RecommendedOilConsumption() {
-        }
+        public RecommendedOilConsumption() {}
 
         public RecommendedOilConsumption(int id, String machineCombination, String productCombination, float average) {
             this.id = id;
@@ -61,26 +60,6 @@ public class RecommendedOilConsumption implements IRecommendedOilConsumptionRepo
             this.machineCombination = machineCombination;
         }
 
-    public List<RecommendedOilConsumption> getDbRecommededOilConsumption() {
-        List<RecommendedOilConsumption> recommendedOilConsumptionList = null;
-
-        try {
-            InputStream is = new URL("http://localhost:4567/average-oil-usage").openStream();
-
-            byte b[] = new byte[is.available()]; // kun små filer
-            is.read(b);
-            String str = new String(b, "UTF-8");
-            Gson gson = new Gson();
-            Type averageOilUsageType = new TypeToken<Collection<RecommendedOilConsumption>>(){}.getType();
-            recommendedOilConsumptionList =  gson.fromJson(str, averageOilUsageType);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return recommendedOilConsumptionList;
-    }
-
     @Override
     public String toString() {
         return "RecommendedOilConsumption{" +
@@ -89,36 +68,5 @@ public class RecommendedOilConsumption implements IRecommendedOilConsumptionRepo
                 ", productCombination='" + productCombination + '\'' +
                 ", average=" + average +
                 '}';
-    }
-
-    @Override
-    public List<RecommendedOilConsumption> getAverageOilConsumptions() {
-        return new RecommendedOilConsumption().getDbRecommededOilConsumption();
-    }
-
-    @Override
-    public RecommendedOilConsumption getRecommendedOilConsumption(String productCombination) {
-        RecommendedOilConsumption recommendedOilConsumption = null;
-
-        try {
-            InputStream is = new URL("http://localhost:4567/average-oil-consumption/product-combination/" + productCombination).openStream();
-
-            byte b[] = new byte[is.available()]; // kun små filer
-            is.read(b);
-            String str = new String(b, "UTF-8");
-            Gson gson = new Gson();
-            recommendedOilConsumption =  gson.fromJson(str, RecommendedOilConsumption.class);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return recommendedOilConsumption;
-    }
-
-    public static void main(String[] args) {
-        RecommendedOilConsumption r = new RecommendedOilConsumption();
-        RecommendedOilConsumption r1 = r.getRecommendedOilConsumption("2001,2,3,4,5");
-        System.out.println(r1.getAverage());
     }
 }

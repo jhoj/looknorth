@@ -1,6 +1,8 @@
 package fo.looknorth.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -8,22 +10,22 @@ import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 
 public class StartupActivity extends AppCompatActivity implements Runnable {
-
+Handler mHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
 
-        Logik.instance = new Logik();
-        Logik.instance.lavTestData();
+        initData();
+        LooknorthLogic.instance.initMqtt(this.getApplicationContext());
+
 
         SpannableString s = new SpannableString("Looknorth");
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
@@ -33,17 +35,13 @@ public class StartupActivity extends AppCompatActivity implements Runnable {
         ImageView logo = (ImageView) findViewById(R.id.logoImageView);
         TextView slogan = (TextView) findViewById(R.id.sloganTextView);
 
-        int DURATION = 1500;
-        int OFFSET = 10;
-
         Animation zoom = AnimationUtils.loadAnimation(this, R.anim.zoom_animation);
         logo.startAnimation(zoom);
         slogan.startAnimation(zoom);
 
         //if this is a fresh start
         if (savedInstanceState == null) {
-            Logik.instance.handler.postDelayed(this, 3500);
-
+            mHandler.postDelayed(this, 3000);
         }
     }
 
@@ -57,6 +55,26 @@ public class StartupActivity extends AppCompatActivity implements Runnable {
     @Override
     public void finish() {
         super.finish();
-        Logik.instance.handler.removeCallbacks(this);
+        mHandler.removeCallbacks(this);
+    }
+
+    private void initData() {
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    LooknorthLogic.instance.initData();
+                    return "Data er hentet!";
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return "Data blev ikke hentet.";
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Object besked) {
+                System.out.println(besked);
+            }
+        }.execute();
     }
 }

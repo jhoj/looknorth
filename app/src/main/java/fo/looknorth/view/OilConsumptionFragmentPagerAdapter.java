@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 
 /**
  * Created by jakup on 4/28/16.
@@ -23,7 +23,7 @@ public class OilConsumptionFragmentPagerAdapter extends FragmentStatePagerAdapte
     @Override
     public int getCount() {
         int totalFragment = 1;
-        int numberOfMachines = Logik.instance.machines.length;
+        int numberOfMachines = LooknorthLogic.instance.machines.size();
 
         return totalFragment + numberOfMachines;
     }

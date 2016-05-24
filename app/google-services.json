@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "339805151341",
+    "firebase_url": "https://project-4939493345513684007.firebaseio.com",
+    "project_id": "project-4939493345513684007",
+    "storage_bucket": "project-4939493345513684007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339805151341:android:1a978c4438ca61d4",
+        "android_client_info": {
+          "package_name": "fo.looknorth.app.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339805151341-f7ii1peccg9iogjrtnn3nridcn9v3fkl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fo.looknorth.app.app",
+            "certificate_hash": "3234AA4E0FEA48BD04511BB2A299DDB85DB5ADA5"
+          }
+        },
+        {
+          "client_id": "339805151341-fh6tp7ujfoij7qvapent614p5l593lec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXchz1vL4M9Ic6LYDQsVjsnTJzJqQ0XTQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339805151341-fh6tp7ujfoij7qvapent614p5l593lec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

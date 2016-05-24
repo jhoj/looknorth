@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import fo.looknorth.logik.Logik;
+import fo.looknorth.logic.LooknorthLogic;
 
 public class ProductsInProductionPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,7 +21,7 @@ public class ProductsInProductionPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         //every machine.
         //GET number of machines
-        return Logik.instance.machines.length;
+        return LooknorthLogic.instance.machines.size();
     }
 
     @Override

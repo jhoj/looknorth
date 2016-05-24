@@ -6,5 +6,5 @@ import java.util.List;
  * Created by jakup on 5/18/16.
  */
 public interface IMachineRepository {
-    List<Machine> getMachines();
+    List<MachineRepository> getMachines();
 }
