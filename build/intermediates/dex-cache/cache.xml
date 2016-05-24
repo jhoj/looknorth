@@ -1,2 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.2.1_4e84f63f1576852ed79166f98cd622c30108e00d.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.2.1_4e84f63f1576852ed79166f98cd622c30108e00d/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.2.1_21048461322acae47b969425e82deabfb45c065a/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.2.1_21048461322acae47b969425e82deabfb45c065a.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-annotations-2.2.2_5d080b5549e16b1221603dae6c36442b17cd401f/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.2.2/285cb9c666f0f0f3dd8a1be04e1f457eb7b15113/jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/jackson-annotations-2.2.2_5d080b5549e16b1221603dae6c36442b17cd401f.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/tubesock-0.0.12_2ac6ec2b1c2372d40a7726719d2fe7dfbe65f401/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/tubesock/0.0.12/6ec0bbd3e161a73ed672284b587fd32309a86d7a/tubesock-0.0.12.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6ec0bbd3e161a73ed672284b587fd32309a86d7a">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/tubesock-0.0.12_2ac6ec2b1c2372d40a7726719d2fe7dfbe65f401.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0640f9ecc102463a85155b3c0b645e49ddef90a9">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_948acf7ad5d1e31ba4bab056fed1e5d3da9cd585/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.android.service/1.0.2/2d956522c556caeb35148445ecd059ebe67331f6/org.eclipse.paho.android.service-1.0.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2d956522c556caeb35148445ecd059ebe67331f6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/org.eclipse.paho.android.service-1.0.2_ed9c69f46f42aec9bc9bc57ee19436aa1fe952de/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.0/c0af904657634f7ab9cc21e75d80250570033321/firebase-client-jvm-2.5.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c0af904657634f7ab9cc21e75d80250570033321">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-jvm-2.5.0_c11061e32eced787aa51fb0420b95c3bcb9b64b8/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-jvm/2.5.0/c0af904657634f7ab9cc21e75d80250570033321/firebase-client-jvm-2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c0af904657634f7ab9cc21e75d80250570033321">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/firebase-client-jvm-2.5.0_c11061e32eced787aa51fb0420b95c3bcb9b64b8.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.android.service/1.0.2/2d956522c556caeb35148445ecd059ebe67331f6/org.eclipse.paho.android.service-1.0.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2d956522c556caeb35148445ecd059ebe67331f6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/org.eclipse.paho.android.service-1.0.2_ed9c69f46f42aec9bc9bc57ee19436aa1fe952de.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.0.9/4244e2998018aa492389e8e30a77b7987959608e/MPAndroidChart-v2.0.9.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4244e2998018aa492389e8e30a77b7987959608e">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v2.0.9_2ed14769884a4181b5d6dcdeb805a23b67b20756.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.0.9/4244e2998018aa492389e8e30a77b7987959608e/MPAndroidChart-v2.0.9.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4244e2998018aa492389e8e30a77b7987959608e">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/MPAndroidChart-v2.0.9_2ed14769884a4181b5d6dcdeb805a23b67b20756/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.astuetz-pagerslidingtabstrip-1.0.1_19141bd242b2b1ca98ba606ac649ef82c4a881b3.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.astuetz-pagerslidingtabstrip-1.0.1_19141bd242b2b1ca98ba606ac649ef82c4a881b3/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.0/7d0473896b3b10b23a2f9812fec4316dff8afdd/firebase-client-android-2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="07d0473896b3b10b23a2f9812fec4316dff8afdd">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/firebase-client-android-2.5.0_c340a4db82ab231541864ce5012d97b6235f6180.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.firebase/firebase-client-android/2.5.0/7d0473896b3b10b23a2f9812fec4316dff8afdd/firebase-client-android-2.5.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="07d0473896b3b10b23a2f9812fec4316dff8afdd">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/firebase-client-android-2.5.0_c340a4db82ab231541864ce5012d97b6235f6180/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.2.1_e7bba9bd1cd1958e2674a502814ebfc423dfdd10/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.2.1_e7bba9bd1cd1958e2674a502814ebfc423dfdd10.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/11752d3f24d1a9deda4533a7ca18d8496417ceeb/org.eclipse.paho.client.mqttv3-1.0.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/org.eclipse.paho.client.mqttv3-1.0.2_f642d1068fe250c47acf05c9f97c7ae06889a99b/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/11752d3f24d1a9deda4533a7ca18d8496417ceeb/org.eclipse.paho.client.mqttv3-1.0.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="11752d3f24d1a9deda4533a7ca18d8496417ceeb">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/org.eclipse.paho.client.mqttv3-1.0.2_f642d1068fe250c47acf05c9f97c7ae06889a99b.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/libs/gson-2.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2f5481ff752b0e69ecba7070f8b0a645e570cc22">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/2/gson-2.2_86dbf824e81294690716d988ac4af88c17780bbd/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/libs/gson-2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2f5481ff752b0e69ecba7070f8b0a645e570cc22">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/gson-2.2_86dbf824e81294690716d988ac4af88c17780bbd.jar" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-databind-2.2.2_5f13b83d419382afa63fd241e07c33eec5a6518e/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.2.2/3c8f6018eaa72d43b261181e801e6f8676c16ef6/jackson-databind-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/jackson-databind-2.2.2_5f13b83d419382afa63fd241e07c33eec5a6518e.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.2.1_7996d6bcfd24e4ff7dccca361b08212ad561134f/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1_7996d6bcfd24e4ff7dccca361b08212ad561134f.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.2.1_1184a1a6a129b6f42b8d5e5ec09261d64d9ede3b.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.2.1_1184a1a6a129b6f42b8d5e5ec09261d64d9ede3b/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.1_52214e1ea6182c15bca53933c807644569855002.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.2.1_52214e1ea6182c15bca53933c807644569855002/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.2.1_2fd3e6e15b64fc2e2daa7bd141a36a096d34f358/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/exploded-aar/com.android.support/design/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="72961d8b453b46e277702f18de9d210bc019e36e">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.2.1_2fd3e6e15b64fc2e2daa7bd141a36a096d34f358.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1_914d20962f5311637a1c2269d3fccd4d6e8727a3.jar" />
+    </item>
+    <item
+        jar="/home/jakup/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.2.1_914d20962f5311637a1c2269d3fccd4d6e8727a3/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="72b65826e0f9968a897ce46c5aba13462dc670ea">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_3f8135b771855496f173bba4ece71144694a5067/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.2.2_83a358a54cc9f27e3c1d4910c28c62ffc831340c/classes.dex" />
+    </item>
+    <item
+        jar="/home/jakup/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.2/d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b/jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="/home/jakup/Dropbox/university/6thSemester/Bachelors-project/App/Looknorth/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.2_83a358a54cc9f27e3c1d4910c28c62ffc831340c.jar" />
+    </item>
+
+</items>

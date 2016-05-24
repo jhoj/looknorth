@@ -41,7 +41,7 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
         View rootView = inflater.inflate(R.layout.fragment_products_in_production, container, false);
 
         id = getArguments().getInt("machineId");
-        Product p = LooknorthLogic.instance.machines.get(id).currentProduct;
+
         LooknorthLogic.instance.observers.add(this);
 
         currentProductText = (TextView) rootView.findViewById(R.id.currently_active_product_text);
@@ -60,10 +60,25 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
 
         };
 
+        int position = -1 ;
+
+        Product a = LooknorthLogic.instance.machines.get(id).currentProduct;
+
+        for (int i = 0; i < arrayAdapter.getCount(); i++) {
+
+            Product b = (Product) arrayAdapter.getItem(i);
+
+            if(a.equals(b)) {
+                position = i;
+                break;
+            }
+        }
+
         productListSpinner.setAdapter(arrayAdapter);
         productListSpinner.setOnItemSelectedListener(this);
         productListSpinner.setPrompt("Choose a product");
-        currentProductText.setText(p.toString());
+        productListSpinner.setSelection(position);
+        currentProductText.setText(a.toString());
 
         return rootView;
     }

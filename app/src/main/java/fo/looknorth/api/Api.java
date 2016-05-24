@@ -155,13 +155,13 @@ public class Api {
 
         // CHANGING ACTIVE PRODUCTS
         Product p = productList.get(5);
-        int machineId = 1;
-        api.putCurrentProduct(machineId, p);
-
+        for (int j = 1; j < 6; j++) {
+            api.putCurrentProduct(j, p);
+        }
         // ACTIVE PRODUCTS
         activeProductList = api.getCurrentProducts();
         i = activeProductList.iterator();
-        System.out.println("****BEFORE******");
+        System.out.println("****AFTER******");
 
         while (i.hasNext()) {
             System.out.println(i.next());
