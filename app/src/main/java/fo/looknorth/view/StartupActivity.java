@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logic.LooknorthLogic;
+import fo.looknorth.logic.Logic;
 
 public class StartupActivity extends AppCompatActivity implements Runnable {
 Handler mHandler = new Handler();
@@ -24,10 +24,10 @@ Handler mHandler = new Handler();
         setContentView(R.layout.activity_startup);
 
         initData();
-        LooknorthLogic.instance.initMqtt(this.getApplicationContext());
+        Logic.instance.initMqtt(this.getApplicationContext());
 
 
-        SpannableString s = new SpannableString("Looknorth");
+        SpannableString s = new SpannableString(getResources().getString(R.string.app_name));
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         setTitle(s);
@@ -63,7 +63,7 @@ Handler mHandler = new Handler();
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
-                    LooknorthLogic.instance.initData();
+                    Logic.instance.initData();
                     return "Data er hentet!";
                 } catch (Exception e) {
                     e.printStackTrace();

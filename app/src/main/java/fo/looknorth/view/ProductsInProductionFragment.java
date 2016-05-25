@@ -37,7 +37,7 @@ public class ProductsInProductionFragment extends Fragment {
         pagerSlidingTabStrip.setTypeface(t, R.style.myOwnFont);
 
 
-        SpannableString s = new SpannableString("Products in Production");
+        SpannableString s = new SpannableString(getResources().getString(R.string.name_products_in_production));
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getActivity().setTitle(s);

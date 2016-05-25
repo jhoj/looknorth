@@ -27,10 +27,9 @@ import com.github.mikephil.charting.utils.PercentFormatter;
 import com.github.mikephil.charting.animation.AnimationEasing;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logic.LooknorthLogic;
+import fo.looknorth.logic.Logic;
 import fo.looknorth.model.Machine;
 
 import fo.looknorth.model.ProductionCounter;
@@ -67,7 +66,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         tabIndex = getArguments().getInt("tabIndex");
 
         TextView dateText = (TextView) rootView.findViewById(R.id.dateText);
-        dateText.setText(LooknorthLogic.instance.getDate());
+        dateText.setText(Logic.instance.getDate());
 
         // find barchart defined in xml
         barChart = (BarChart) rootView.findViewById(R.id.bar_chart);
@@ -77,7 +76,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
 
         barChart.setDrawBarShadow(false);
         barChart.setDrawValueAboveBar(true);
-        barChart.setDescription("Today's Production");
+        barChart.setDescription(getResources().getString(R.string.production_chart_description));
         barChart.setPinchZoom(false);
         barChart.setDescriptionTypeface(t);
 
@@ -115,7 +114,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         pieChart.setUsePercentValues(true);
         pieChart.setDescriptionTypeface(t);
 
-        pieChart.setCenterText("Daily Production");
+        pieChart.setCenterText(getResources().getString(R.string.pie_chart_description));
         pieChart.setCenterTextTypeface(t);
         pieChart.setDescription("");
         pieChart.setDrawHoleEnabled(true);
@@ -148,7 +147,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         //todo add animation to the pie
         ArrayList<String> xVals = new ArrayList<>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
-        ArrayList<Machine> machines = (ArrayList<Machine>) LooknorthLogic.instance.machines;
+        ArrayList<Machine> machines = (ArrayList<Machine>) Logic.instance.machines;
         Machine machine = machines.get(tabIndex);  //this is the total section
 
         for (int i = 0; i < machine.productionCounterList.size(); i++)
@@ -202,7 +201,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
 
     private void setBarData() {
         //todo add animation to the bars
-        Machine m = LooknorthLogic.instance.machines.get(tabIndex);
+        Machine m = Logic.instance.machines.get(tabIndex);
         ArrayList<String> xVals = new ArrayList<>();
 
         for (ProductionCounter p: m.productionCounterList) {

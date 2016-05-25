@@ -39,7 +39,7 @@ public class ProductionFragment extends Fragment {
 
         Toast.makeText(getActivity(), R.string.name_production, Toast.LENGTH_SHORT).show();
 
-        SpannableString s = new SpannableString("Production");
+        SpannableString s = new SpannableString(getResources().getString(R.string.name_production));
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getActivity().setTitle(s);

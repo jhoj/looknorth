@@ -33,14 +33,14 @@ tools:context="fo.looknorth.view.OilConsumptionFragment">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Product currently active:"
+                android:text="@string/currently_active_text"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Not active"
+                android:text=""
                 android:id="@+id/currently_active_product_text"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/active_product" />
@@ -56,7 +56,7 @@ tools:context="fo.looknorth.view.OilConsumptionFragment">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Change product:"
+                android:text="@string/change_product_text"
                 android:id="@+id/change_product_constant_text"
                 android:layout_gravity="center_horizontal" />
             <Spinner

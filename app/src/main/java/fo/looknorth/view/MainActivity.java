@@ -1,7 +1,6 @@
 package fo.looknorth.view;
 
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,12 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 
-import com.firebase.client.Firebase;
-
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logic.LooknorthLogic;
+import fo.looknorth.logic.Logic;
 import fo.looknorth.utility.CustomTypefaceSpan;
 
 public class MainActivity extends AppCompatActivity
@@ -39,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         }
         //Firebase.setAndroidContext(this);
         //Firebase firebase = new Firebase("https://looknorth.firebaseio.com/");
-       // firebase.child("v0").child("logik").setValue(LooknorthLogic.instance);
+       // firebase.child("v0").child("logik").setValue(Logic.instance);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,10 +77,10 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         try {
-            if (LooknorthLogic.instance.mqttClient != null) {
-                LooknorthLogic.instance.mqttClient.unregisterResources();
-                LooknorthLogic.instance.mqttClient.disconnect();
-                LooknorthLogic.instance.mqttClient = null;
+            if (Logic.instance.mqttClient != null) {
+                Logic.instance.mqttClient.unregisterResources();
+                Logic.instance.mqttClient.disconnect();
+                Logic.instance.mqttClient = null;
             }
         } catch (MqttException e) {
             e.printStackTrace();

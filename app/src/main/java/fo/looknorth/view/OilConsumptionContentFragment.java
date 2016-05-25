@@ -20,12 +20,16 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
+import java.util.List;
+
 import fo.looknorth.app.app.R;
-import fo.looknorth.logic.LooknorthLogic;
+import fo.looknorth.logic.Logic;
+import fo.looknorth.model.OilConsumption;
 import fo.looknorth.model.OilConsumptionEntry;
 
-public class OilConsumptionContentFragment extends Fragment
+public class OilConsumptionContentFragment extends Fragment implements Runnable
 {
+    Logic l = Logic.instance;
     // tab index in the viewpager
     public int tabIndex;
 
@@ -61,11 +65,13 @@ public class OilConsumptionContentFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_oil_consumption, container, false);
 
+        Logic.instance.observers.add(this);
+
         tabIndex = getArguments().getInt("tabIndex");
 
         //MP CHART
         lineChart = (LineChart) rootView.findViewById(R.id.line_chart);
-        lineChart.setDescription("Oil usage");
+        lineChart.setDescription(getResources().getString(R.string.oil_chart_description));
         lineChart.setDescriptionTextSize(18f);
         lineChart.setTouchEnabled(true);
         lineChart.setHighlightEnabled(false);
@@ -99,7 +105,7 @@ public class OilConsumptionContentFragment extends Fragment
         YAxis yAxisRight = lineChart.getAxisRight();
         yAxisRight.setDrawLabels(false);
 
-        //add datasets for x values and actual and recommended usage.
+        //add datasets for x values and actual and recommended consumption.
         initDataForChart();
 
         oilConsumptionList = (ListView) rootView.findViewById(R.id.oilConsumptionListView);
@@ -136,25 +142,10 @@ public class OilConsumptionContentFragment extends Fragment
         return rootView;
     }
 
-    // Define the code block to be executed
-    private Runnable updateLineChart = new Runnable() {
-        @Override
-        public void run() {
-            addEntry(getTime(), getActualUsage(), getRecommendedUsage());
-            handler.postDelayed(updateLineChart, 1000); // run every second.
-        }
-    };
-
     @Override
-    public void onResume() {
-        super.onResume();
-        handler.post(updateLineChart);
-    }
-
-    @Override
-    public void onPause() {
-        handler.removeCallbacks(updateLineChart);
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
+        Logic.instance.observers.remove(this);
     }
 
     private void addEntry(String xValue, float yValueCurrent, float yValueRecommended) {
@@ -197,7 +188,7 @@ public class OilConsumptionContentFragment extends Fragment
         currentUsageValues.add(new Entry(0, 0));
 
         // LineDataSet needs a list of entries to instatiate
-        LineDataSet currentUsageDataSet = new LineDataSet(currentUsageValues, "Current oil usage in liters");
+        LineDataSet currentUsageDataSet = new LineDataSet(currentUsageValues, getResources().getString(R.string.actual_consumption));
 
         // set the color to green
         int currentUsageColor = colors[3];
@@ -213,7 +204,7 @@ public class OilConsumptionContentFragment extends Fragment
         ArrayList<Entry> recommendedUsageValues = new ArrayList<>();
         recommendedUsageValues.add(new Entry(0, 0));
 
-        LineDataSet recommendedUsageDataSet = new LineDataSet(recommendedUsageValues, "Recommended");
+        LineDataSet recommendedUsageDataSet = new LineDataSet(recommendedUsageValues, getResources().getString(R.string.recommended_consumption));
         recommendedUsageDataSet.setDrawValues(false);
         recommendedUsageDataSet.setDrawCircles(false);
 
@@ -221,7 +212,7 @@ public class OilConsumptionContentFragment extends Fragment
         int redColor = colors[1];
         recommendedUsageDataSet.setColor(redColor);
         recommendedUsageDataSet.setLineWidth(2.5f);
-        recommendedUsageDataSet.setLabel("Recommeded");
+        recommendedUsageDataSet.setLabel(getResources().getString(R.string.recommended_consumption));
 
         // add recommended to main dataset
         yValues.add(recommendedUsageDataSet);
@@ -236,21 +227,8 @@ public class OilConsumptionContentFragment extends Fragment
         lineChart.invalidate();
     }
 
-    private String getTime() {
-        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
-        int last = entries.length - 1;
-        return entries[last].time;
-    }
-
-    private float getRecommendedUsage() {
-        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
-        int last = entries.length - 1;
-        return entries[last].recommendedUsage;
-    }
-
-    private float getActualUsage() {
-        OilConsumptionEntry[] entries = LooknorthLogic.instance.oilUsageLinePoints.get(tabIndex);
-        int last = entries.length - 1;
-        return entries[last].actualUsage;
+    @Override
+    public void run() {
+        addEntry(l.getTime(tabIndex), l.getActualUsage(tabIndex), l.getRecommendedUsage(tabIndex));
     }
 }

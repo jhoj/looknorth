@@ -12,5 +12,16 @@
     <string name="fragment_title_machine">Maskine %1$d</string>
     <string name="fragment_title_oil_usage">Totalt olieforbrug</string>
     <string name="fragment_title_production">Daglig produktion</string>
+    <string name="actual_consumption">Aktuelt forbrug</string>
+    <string name="change_product_text">Skift produkt:</string>
+    <string name="currently_active_text">Nuværende produkt:</string>
+    <string name="oil_chart_description">Olie forbug</string>
+    <string name="pie_chart_description">Dagens produktion \n numerisk proportion</string>
+    <string name="production_chart_description">Dagens produktion</string>
+    <string name="recommended_consumption">Anbefallede forbrug</string>
+    <string name="slideing_strip_name">Maskine</string>
+    <string name="table_of_consumption_records">Olieforugs tabel</string>
+    <string name="tbl_column_liters">Liter brugt:</string>
+    <string name="tbl_column_recorded_at">Registreret:</string>
 
 </resources>

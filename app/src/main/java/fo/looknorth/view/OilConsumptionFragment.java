@@ -37,7 +37,7 @@ public class OilConsumptionFragment extends Fragment {
         pagerSlidingTabStrip.setViewPager(viewPager);
         pagerSlidingTabStrip.getId();
 
-        SpannableString s = new SpannableString("Oil Consumption");
+        SpannableString s = new SpannableString(getResources().getString(R.string.name_oil_consumption));
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         getActivity().setTitle(s);

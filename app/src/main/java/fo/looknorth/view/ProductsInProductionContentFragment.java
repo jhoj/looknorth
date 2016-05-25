@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fo.looknorth.app.app.R;
-import fo.looknorth.logic.LooknorthLogic;
+import fo.looknorth.logic.Logic;
 import fo.looknorth.model.Product;
 
 public class ProductsInProductionContentFragment extends Fragment implements AdapterView.OnItemSelectedListener, Runnable {
@@ -42,11 +42,11 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
 
         id = getArguments().getInt("machineId");
 
-        LooknorthLogic.instance.observers.add(this);
+        Logic.instance.observers.add(this);
 
         currentProductText = (TextView) rootView.findViewById(R.id.currently_active_product_text);
         productListSpinner = (Spinner) rootView.findViewById(R.id.product_list);
-        arrayAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_view_layout, R.id.productText, LooknorthLogic.instance.productList) {
+        arrayAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_view_layout, R.id.productText, Logic.instance.productList) {
             @Override
             public View getView(int position, View cachedView, ViewGroup parent) {
                 View view = super.getView(position, cachedView, parent);
@@ -62,7 +62,7 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
 
         int position = -1 ;
 
-        Product a = LooknorthLogic.instance.machines.get(id).currentProduct;
+        Product a = Logic.instance.machines.get(id).currentProduct;
 
         for (int i = 0; i < arrayAdapter.getCount(); i++) {
 
@@ -76,7 +76,6 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
 
         productListSpinner.setAdapter(arrayAdapter);
         productListSpinner.setOnItemSelectedListener(this);
-        productListSpinner.setPrompt("Choose a product");
         productListSpinner.setSelection(position);
         currentProductText.setText(a.toString());
 
@@ -86,13 +85,13 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LooknorthLogic.instance.observers.remove(this);
+        Logic.instance.observers.remove(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        currentProductText.setText(LooknorthLogic.instance.machines.get(id).currentProduct.toString());
+        currentProductText.setText(Logic.instance.machines.get(id).currentProduct.toString());
     }
 
     @Override
@@ -111,25 +110,23 @@ public class ProductsInProductionContentFragment extends Fragment implements Ada
         }
 
         Product p = (Product) parent.getItemAtPosition(position);
-        LooknorthLogic.instance.machines.get(id).currentProduct = p;
-        LooknorthLogic.instance.putActiveProduct(id);
 
-        for (Runnable r: LooknorthLogic.instance.observers) { r.run(); }
+        Logic.instance.machines.get(id).currentProduct = p;
+        Logic.instance.putActiveProduct(id);
+        Logic.instance.updateViews();
 
         Toast.makeText(getActivity(), currentProductText.getText().toString(), Toast.LENGTH_SHORT).show();
-
     }
 
 
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        currentProductText.setText(LooknorthLogic.instance.machines.get(id).currentProduct.toString());
     }
 
     @Override
     public void run() {
-        currentProductText.setText(LooknorthLogic.instance.machines.get(id).currentProduct.toString());
+        currentProductText.setText(Logic.instance.machines.get(id).currentProduct.toString());
     }
 
 }

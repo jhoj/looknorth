@@ -43,7 +43,7 @@ tools:context="fo.looknorth.view.OilConsumptionFragment">
                     android:layout_height="wrap_content"
                     android:id="@+id/tableText"
                     android:padding="10dp"
-                    android:text="Table of oil consumption records:"
+                    android:text="@string/table_of_consumption_records"
                     android:gravity="center_horizontal" />
 
                 <TableLayout
@@ -57,7 +57,7 @@ tools:context="fo.looknorth.view.OilConsumptionFragment">
                         android:id="@+id/table_header">
                         <TextView
                             android:layout_weight="1"
-                            android:text="Recorded at:"
+                            android:text="@string/tbl_column_recorded_at"
                             android:padding="5dp"
                             android:textSize="14sp"
                             android:layout_width="match_parent"
@@ -65,7 +65,7 @@ tools:context="fo.looknorth.view.OilConsumptionFragment">
                             android:textStyle="bold" />
                         <TextView
                             android:layout_weight="1"
-                            android:text="Liters of oil used:"
+                            android:text="@string/tbl_column_liters"
                             android:textSize="14sp"
                             android:padding="5dp"
                             android:layout_width="match_parent"

@@ -12,5 +12,16 @@
     <string name="fragment_title_machine">Machine %1$d</string>
     <string name="fragment_title_oil_usage">Total usage</string>
     <string name="fragment_title_production">Daily Production</string>
+    <string name="slideing_strip_name">Machine</string>
+    <string name="currently_active_text">Product currently active:</string>
+    <string name="change_product_text">Change product:</string>
+    <string name="oil_chart_description">Oil consumption</string>
+    <string name="actual_consumption">Actual consumption</string>
+    <string name="recommended_consumption">Recommended consumption</string>
+    <string name="table_of_consumption_records">Table of oil consumption records:</string>
+    <string name="tbl_column_recorded_at">Recorded at:</string>
+    <string name="tbl_column_liters">Liters of oil used:</string>
+    <string name="production_chart_description">Todays production</string>
+    <string name="pie_chart_description">Todays production \n numerical proportion</string>
 
 </resources>
