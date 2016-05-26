@@ -8,6 +8,7 @@ public class Machine implements Comparable<Machine> {
     public int machineNumber;
     public Product currentProduct;
     public ArrayList<ProductionCounter> productionCounterList;
+    public ProductionEntry productionEntry;
 
     public Machine() {}
 
@@ -15,6 +16,7 @@ public class Machine implements Comparable<Machine> {
     {
         this.machineNumber = machineNumber;
         this.currentProduct = product;
+        this.productionEntry = new ProductionEntry();
     }
 
     public Product getCurrentProduct() {

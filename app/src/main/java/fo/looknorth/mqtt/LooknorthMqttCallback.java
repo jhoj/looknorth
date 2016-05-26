@@ -12,7 +12,9 @@ package fo.looknorth.mqtt;
     import java.util.List;
 
     import fo.looknorth.logic.Logic;
+    import fo.looknorth.model.Machine;
     import fo.looknorth.model.OilConsumptionEntry;
+    import fo.looknorth.model.Product;
     import fo.looknorth.utility.MqttMessageReader;
 
 /**
@@ -36,27 +38,71 @@ package fo.looknorth.mqtt;
                 // create new oil consumption point
                 String time = getClock();
 
+                // recommended consumption
                 float recommended = 1.3f;
+
+                // actual consumption
                 float actual = Float.parseFloat(message.toString());
+
+                // new entry
                 OilConsumptionEntry entry = new OilConsumptionEntry(time, recommended, actual);
 
+                // the sensor the message came from, i.e. where to put the data
                 int sensorId = Integer.parseInt(reader.getSENSOR());
 
+                // the index of total consumption
+                int total = 0;
+
+                // retrieve list with entries
                 List<OilConsumptionEntry> entryList = Logic.instance.oilUsageLinePoints.get(sensorId);
-                List<OilConsumptionEntry> totalEntryList = Logic.instance.oilUsageLinePoints.get(0);
+
+                // retrieve list with all oil entries
+                List<OilConsumptionEntry> totalEntryList = Logic.instance.oilUsageLinePoints.get(total);
+
+                // add to specific list
                 entryList.add(entry);
+
+                // add to the total list
                 totalEntryList.add(entry);
+
+                // put the specific list back into hashmap
                 Logic.instance.oilUsageLinePoints.put(sensorId, entryList);
-                Logic.instance.oilUsageLinePoints.put(0, entryList);
 
-            } else if (topic.contains("machines")) {
-                // create new oil consumption point
+                //put the total list back into hashmap
+                Logic.instance.oilUsageLinePoints.put(total, entryList);
 
-                //add it to dataset
+            }
+            // if the topic was sent to the machine topic
+            else if (topic.contains("machines")) {
+                // find which sensor sent the message.
+                int machineId = Integer.parseInt(reader.getSENSOR());
+
+                // the index that the the specific machine has in the list.
+                int actualIndex = machineId - 1;
+
+                //find current product for this machine
+                Product item = Logic.instance.machines.get(actualIndex).currentProduct;
+
+                //setting the count of the product to 1.
+                item.count = 1;
+
+                System.out.println(item.content());
+
+                // create new production entry
+                // if it is of type not active, then dont add it to the list.
+                if (!item.name.contains("Ikki aktivit")) {
+                    Logic.instance.machines.get(actualIndex).productionEntry.add(item);
+                }
+                System.out.println("Total:");
+                System.out.println(Logic.instance.machines.get(actualIndex).productionEntry.getItemsProducedByMachine());
             }
 
-            for (Runnable r: Logic.instance.observers) { r.run();}
 
+
+            // all other topics will be ignored
+
+            // update all views.
+            Logic.instance.updateViews();
         }
 
         @Override

@@ -32,9 +32,10 @@ import fo.looknorth.app.app.R;
 import fo.looknorth.logic.Logic;
 import fo.looknorth.model.Machine;
 
+import fo.looknorth.model.Product;
 import fo.looknorth.model.ProductionCounter;
 
-public class ProductionContentFragment extends Fragment implements OnChartValueSelectedListener {
+public class ProductionContentFragment extends Fragment implements OnChartValueSelectedListener, Runnable {
 
     public int tabIndex;
     private BarChart barChart;
@@ -63,6 +64,7 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_production, container, false);
 
+        Logic.instance.observers.add(this);
         tabIndex = getArguments().getInt("tabIndex");
 
         TextView dateText = (TextView) rootView.findViewById(R.id.dateText);
@@ -143,103 +145,117 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Logic.instance.observers.remove(this);
+    }
+
     private void setPieData() {
-        //todo add animation to the pie
         ArrayList<String> xVals = new ArrayList<>();
         ArrayList<Entry> yVals = new ArrayList<Entry>();
         ArrayList<Machine> machines = (ArrayList<Machine>) Logic.instance.machines;
         Machine machine = machines.get(tabIndex);  //this is the total section
 
-        for (int i = 0; i < machine.productionCounterList.size(); i++)
-        {
-            // it has 2 entries
-            // two names added to pie chart.
-            xVals.add(machine.productionCounterList.get(i).product.name);
+        if (!machine.productionEntry.items.isEmpty()) {
+            for (int i = 0; i < machine.productionEntry.items.size(); i++) {
+                xVals.add(machine.productionEntry.items.get(i).name);
 
-            // shows the product percentage of the whole production
-            float pieTotal = machine.getTotalProducedItems();
-            float productionQuantity = machine.productionCounterList.get(i).quantityProduced;
-            float fraction = productionQuantity / pieTotal;
-            float percentage = fraction * 100;
+                // shows the product percentage of the whole production
+                float pieTotal = machine.productionEntry.getItemsProducedByMachine();
+                float productionQuantity = machine.productionEntry.items.get(i).getTotal();
+                float fraction = productionQuantity / pieTotal;
+                float percentage = fraction * 100;
 
-            yVals.add(new Entry(percentage, i));
+                yVals.add(new Entry(percentage, i));
+            }
+
+            PieDataSet dataSet = new PieDataSet(yVals, "");
+            dataSet.setSliceSpace(3f);
+            dataSet.setSelectionShift(5f);
+            dataSet.setValueTypeface(t);
+
+            // add a lot of colors
+
+            ArrayList<Integer> colors = new ArrayList<>();
+
+            for (int c : ColorTemplate.COLORFUL_COLORS)
+                colors.add(c);
+
+            for (int c : ColorTemplate.LIBERTY_COLORS)
+                colors.add(c);
+
+            for (int c : ColorTemplate.PASTEL_COLORS)
+                colors.add(c);
+
+            colors.add(ColorTemplate.getHoloBlue());
+
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(xVals, dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setValueTextSize(11f);
+            data.setValueTextColor(Color.WHITE);
+            data.setValueTypeface(t);
+            pieChart.setData(data);
+            pieChart.getData().notifyDataChanged();
+            pieChart.notifyDataSetChanged();
+            pieChart.animateX(700, AnimationEasing.EasingOption.EaseInCirc);
+
+            pieChart.invalidate();
         }
-
-        PieDataSet dataSet = new PieDataSet(yVals, "");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setValueTypeface(t);
-
-        // add a lot of colors
-
-        ArrayList<Integer> colors = new ArrayList<>();
-
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-
-        colors.add(ColorTemplate.getHoloBlue());
-
-        dataSet.setColors(colors);
-
-        PieData data = new PieData(xVals, dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.WHITE);
-        data.setValueTypeface(t);
-        pieChart.setData(data);
-
-        pieChart.animateX(700, AnimationEasing.EasingOption.EaseInCirc);
-
-        pieChart.invalidate();
     }
 
     private void setBarData() {
-        //todo add animation to the bars
         Machine m = Logic.instance.machines.get(tabIndex);
         ArrayList<String> xVals = new ArrayList<>();
 
-        for (ProductionCounter p: m.productionCounterList) {
-            xVals.add(p.product.name);
+        if (!m.productionEntry.items.isEmpty()) {
+            for (Product product : m.productionEntry.items) {
+                xVals.add(product.name);
+            }
+
+
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int i : ColorTemplate.COLORFUL_COLORS) {
+                colors.add(i);
+            }
+            for (int i : ColorTemplate.LIBERTY_COLORS) {
+                colors.add(i);
+            }
+            for (int i : ColorTemplate.PASTEL_COLORS) {
+                colors.add(i);
+            }
+
+
+            BarDataSet set;
+            ArrayList<BarDataSet> dataSets = new ArrayList<>();
+
+            for (int i = 0; i < m.productionEntry.items.size(); i++) {
+                ArrayList<BarEntry> list = new ArrayList<>();
+                list.add(new BarEntry(m.productionEntry.items.get(i).getTotal(), i));
+                set = new BarDataSet(list, m.productionEntry.items.get(i).name);
+                set.setColor(colors.get(i));
+                set.setBarSpacePercent(35f);
+                dataSets.add(set);
+            }
+
+            BarData data = new BarData(xVals, dataSets);
+            data.setValueTextSize(10f);
+            data.setValueTypeface(t);
+            barChart.setData(data);
+
+            barChart.getData().notifyDataChanged();
+            barChart.notifyDataSetChanged();
+            barChart.animateY(700, AnimationEasing.EasingOption.EaseInCubic);
+
+            barChart.invalidate();
         }
-
-        ArrayList<Integer> colors = new ArrayList<>();
-        for (int i: ColorTemplate.COLORFUL_COLORS) {
-            colors.add(i);
-        }
-        for (int i: ColorTemplate.LIBERTY_COLORS) {
-            colors.add(i);
-        }
-        for (int i: ColorTemplate.PASTEL_COLORS) {
-            colors.add(i);
-        }
-
-
-        BarDataSet set;
-        ArrayList<BarDataSet> dataSets = new ArrayList<>();
-
-        for (int i = 0; i < m.productionCounterList.size(); i++) {
-            ArrayList<BarEntry> list = new ArrayList<>();
-            list.add(new BarEntry(m.productionCounterList.get(i).quantityProduced, i));
-            set = new BarDataSet(list, m.productionCounterList.get(i).product.name);
-            set.setColor(colors.get(i));
-            set.setBarSpacePercent(35f);
-            dataSets.add(set);
-        }
-
-        BarData data = new BarData(xVals, dataSets);
-        data.setValueTextSize(10f);
-        data.setValueTypeface(t);
-        barChart.setData(data);
-
-        barChart.animateY(700, AnimationEasing.EasingOption.EaseInCubic);
-
-        barChart.invalidate();
     }
 
     @Override
@@ -249,5 +265,11 @@ public class ProductionContentFragment extends Fragment implements OnChartValueS
     @Override
     public void onNothingSelected() {
 
+    }
+
+    @Override
+    public void run() {
+        setBarData();
+        setPieData();
     }
 }

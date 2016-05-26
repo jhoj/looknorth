@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.util.Log;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -17,10 +18,10 @@ import java.util.List;
 
 import fo.looknorth.api.Api;
 import fo.looknorth.model.Machine;
-import fo.looknorth.model.OilConsumption;
 import fo.looknorth.model.OilConsumptionEntry;
 import fo.looknorth.model.Product;
 import fo.looknorth.model.ProductionCounter;
+import fo.looknorth.model.ProductionEntry;
 import fo.looknorth.mqtt.LooknorthMqttCallback;
 import fo.looknorth.mqtt.MqttActionListener;
 
@@ -31,7 +32,7 @@ public class Logic extends Application {
 
     public static Logic instance;
     public List<Runnable> observers;
-    public Handler hander;
+    public Handler handler;
     public Api api;
 
     // MQTT
@@ -44,7 +45,6 @@ public class Logic extends Application {
     public int qos;
 
     // Model
-    public OilConsumption oilConsumption;
     public List<Machine> machines;
     public HashMap<Integer, List<OilConsumptionEntry>> oilUsageLinePoints;
     public String[] records;
@@ -53,21 +53,26 @@ public class Logic extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("Logic", "onCreate called!");
         instance = this;
         api = Api.instance;
         observers = new ArrayList<>();
-        hander = new Handler();
+        handler = new Handler();
 
         //mqtt klar til init
         broker = "tcp://looknorthserver.cloudapp.net:1883";
-        clientId = "androidSampleClient";
+        clientId = "androidSampleClient" + Calendar.getInstance().getTimeInMillis();
         oilTopic = "looknorth/production/oil-consumption/#";
         machineTopic = "looknorth/production/machines/#";
         topics = new String[2];
         topics[0] = oilTopic;
         topics[1] = machineTopic;
         qos = 2;
-        oilConsumption = new OilConsumption();
+    }
+
+    public void init() {
+        initData();
+        initMqtt(getApplicationContext());
     }
 
     public void initMqtt(Context context) {
@@ -88,46 +93,28 @@ public class Logic extends Application {
     public void initData() {
         machines = api.getMachines();
         for (Machine m: machines) {
-            System.out.println("Machine " + m.machineNumber + " CurrentProduct: " + m.currentProduct.toString());
+            m.productionEntry = new ProductionEntry();
         }
         productList = api.getDbProducts();
 
-
-        List<OilConsumptionEntry> totalEntries = new ArrayList<>();
-        totalEntries.add(new OilConsumptionEntry("Total", 0.9f, 0.8f));
-        totalEntries.add(new OilConsumptionEntry("Total", 0.9f, 0.7f));
-
-        List<OilConsumptionEntry> m1Entries = new ArrayList<>();
-        m1Entries.add(new OilConsumptionEntry("M1", 0.9f, 0.3f));
-        m1Entries.add(new OilConsumptionEntry("M1", 0.9f, 0.3f));
-
-        List<OilConsumptionEntry> m2Entries = new ArrayList<>();
-        m2Entries.add(new OilConsumptionEntry("M2", 0.2f, 0.8f));
-        m2Entries.add(new OilConsumptionEntry("M2", 0.2f, 0.7f));
-
-        List<OilConsumptionEntry> m3Entries = new ArrayList<>();
-        m3Entries.add(new OilConsumptionEntry("M3", 0.2f, 0.8f));
-        m3Entries.add(new OilConsumptionEntry("M3", 0.2f, 0.7f));
-
-        List<OilConsumptionEntry> m4Entries = new ArrayList<>();
-        m4Entries.add(new OilConsumptionEntry("M4", 0.2f, 0.8f));
-        m4Entries.add(new OilConsumptionEntry("M4", 0.2f, 0.7f));
-
-        List<OilConsumptionEntry> m5Entries = new ArrayList<>();
-        m5Entries.add(new OilConsumptionEntry("M5", 0.2f, 0.8f));
-        m5Entries.add(new OilConsumptionEntry("M5", 0.2f, 0.7f));
+        List<OilConsumptionEntry> oilTotalEntries = new ArrayList<>();
+        List<OilConsumptionEntry> oilMachine1Entries = new ArrayList<>();
+        List<OilConsumptionEntry> oilMachine2Entries = new ArrayList<>();
+        List<OilConsumptionEntry> oilMachine3Entries = new ArrayList<>();
+        List<OilConsumptionEntry> oilMachine4Enties = new ArrayList<>();
+        List<OilConsumptionEntry> oilMachine5Entries = new ArrayList<>();
 
         oilUsageLinePoints = new HashMap<>();
-        oilUsageLinePoints.put(0, totalEntries);  // total
-        oilUsageLinePoints.put(1, m1Entries); // machine 1
-        oilUsageLinePoints.put(2, m2Entries); // machine 2
-        oilUsageLinePoints.put(3, m3Entries);  // machine 3
-        oilUsageLinePoints.put(4, m4Entries); // machine 4
-        oilUsageLinePoints.put(5, m5Entries); // machine 5
+        oilUsageLinePoints.put(0, oilTotalEntries);  // total
+        oilUsageLinePoints.put(1, oilMachine1Entries); // machine 1
+        oilUsageLinePoints.put(2, oilMachine2Entries); // machine 2
+        oilUsageLinePoints.put(3, oilMachine3Entries);  // machine 3
+        oilUsageLinePoints.put(4, oilMachine4Enties); // machine 4
+        oilUsageLinePoints.put(5, oilMachine5Entries); // machine 5
 
         records = new String[2];
-        records[0] = totalEntries.get(0).toString();
-        records[1] = totalEntries.get(1).toString();
+        records[0] = oilTotalEntries.get(0).toString();
+        records[1] = oilTotalEntries.get(1).toString();
 
         int quantity = 2;
         int quantity1 = 1;
@@ -174,44 +161,6 @@ public class Logic extends Application {
         return sdf.format(Calendar.getInstance().getTime());
     }
 
-    public void getMachines() {
-        new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object[] params) {
-                try {
-                    machines = api.getMachines();
-                    return "Data er hentet!";
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return "Data blev ikke hentet.";
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Object besked) {
-                System.out.println(besked);
-            }
-        }.execute();
-    }
-    public void getProducts() {
-        new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object[] params) {
-                try {
-                    productList = api.getDbProducts();
-                    return "Data er hentet!";
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return "Data blev ikke hentet.";
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Object besked) {
-                System.out.println(besked);
-            }
-        }.execute();
-    }
     public void putActiveProduct(final int id) {
         new AsyncTask() {
             @Override

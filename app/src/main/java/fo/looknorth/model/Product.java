@@ -16,6 +16,7 @@ public class Product {
 
     public int id;
     public String name;
+    public int count;
     public int quantity;
 
     public Product(){}
@@ -25,11 +26,25 @@ public class Product {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
+        this.count = 1;
+    }
+
+    public int getTotal() {
+        return count * quantity;
+    }
+
+    public String content() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", quantity=" + quantity +
+                '}';
     }
 
     @Override
     public String toString() {
-        return name;
+        return name ;
     }
 
     @Override

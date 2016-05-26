@@ -1,5 +1,6 @@
 package fo.looknorth.view;
 
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -22,6 +24,8 @@ import fo.looknorth.utility.CustomTypefaceSpan;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private boolean isPortraitOrientation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +42,19 @@ public class MainActivity extends AppCompatActivity
         //Firebase firebase = new Firebase("https://looknorth.firebaseio.com/");
        // firebase.child("v0").child("logik").setValue(Logic.instance);
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+
+
+        isPortraitOrientation = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+
+            if (isPortraitOrientation) {
+                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                        this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                drawer.setDrawerListener(toggle);
+                toggle.syncState();
+            }
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         //adding custom font to menu items
@@ -50,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         for (int i=0;i<m.size();i++) {
             MenuItem mi = m.getItem(i);
 
-            //for aapplying a font to subMenu ...
+            //for applying a font to subMenu ...
             SubMenu subMenu = mi.getSubMenu();
             if (subMenu!=null && subMenu.size() >0 ) {
                 for (int j=0; j <subMenu.size();j++) {
@@ -89,12 +101,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -120,8 +132,10 @@ public class MainActivity extends AppCompatActivity
                         .commit();
                 break;
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (isPortraitOrientation) {
+              DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+              drawer.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 

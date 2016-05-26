@@ -16,4 +16,6 @@ public class ToDos {
     //  doesnotworkTODO: 5/18/16 add list view to oil consumption
     // TODO: 5/19/16 declare screen size report
     // donetodo: 5/18/16 test db getters -- done
+    // // TODO: 5/25/16 survive screen orientation
+
 }

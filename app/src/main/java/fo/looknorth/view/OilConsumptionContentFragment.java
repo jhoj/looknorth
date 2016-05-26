@@ -20,6 +20,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import fo.looknorth.app.app.R;
@@ -146,6 +147,19 @@ public class OilConsumptionContentFragment extends Fragment implements Runnable
     public void onDestroyView() {
         super.onDestroyView();
         Logic.instance.observers.remove(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Iterator i = Logic.instance.oilUsageLinePoints.get(tabIndex).iterator();
+
+        while (i.hasNext()) {
+            OilConsumptionEntry o = (OilConsumptionEntry) i.next();
+
+            addEntry(o.time, o.actualUsage, o.recommendedUsage);
+        }
     }
 
     private void addEntry(String xValue, float yValueCurrent, float yValueRecommended) {

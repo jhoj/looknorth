@@ -2,12 +2,12 @@ package fo.looknorth.view;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.TypefaceSpan;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -17,15 +17,15 @@ import fo.looknorth.app.app.R;
 import fo.looknorth.logic.Logic;
 
 public class StartupActivity extends AppCompatActivity implements Runnable {
-Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("StartupActivity", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startup);
 
-        initData();
+        fetchData();
         Logic.instance.initMqtt(this.getApplicationContext());
-
 
         SpannableString s = new SpannableString(getResources().getString(R.string.app_name));
         s.setSpan(new TypefaceSpan("casual"), 0, s.length(),
@@ -41,7 +41,7 @@ Handler mHandler = new Handler();
 
         //if this is a fresh start
         if (savedInstanceState == null) {
-            mHandler.postDelayed(this, 3000);
+            Logic.instance.handler.postDelayed(this, 3000);
         }
     }
 
@@ -55,15 +55,15 @@ Handler mHandler = new Handler();
     @Override
     public void finish() {
         super.finish();
-        mHandler.removeCallbacks(this);
+        Logic.instance.handler.removeCallbacks(this);
     }
 
-    private void initData() {
+    public void fetchData() {
         new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
                 try {
-                    Logic.instance.initData();
+                    Logic.instance.init();
                     return "Data er hentet!";
                 } catch (Exception e) {
                     e.printStackTrace();
