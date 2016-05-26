@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Machine implements Comparable<Machine> {
     public int machineNumber;
     public Product currentProduct;
-    public ArrayList<ProductionCounter> productionCounterList;
     public ProductionEntry productionEntry;
 
     public Machine() {}
@@ -27,22 +26,11 @@ public class Machine implements Comparable<Machine> {
         this.currentProduct = currentProduct;
     }
 
-    public int getTotalProducedItems()
-    {
-        int total = 0;
-        for (ProductionCounter p: productionCounterList)
-        {
-            total += p.quantityProduced;
-        }
-        return total;
-    }
-
     @Override
     public String toString() {
         return "Machine{" +
                 "machineNumber=" + machineNumber +
                 ", currentProduct=" + currentProduct +
-                ", productionCounterList=" + productionCounterList +
                 '}';
     }
 

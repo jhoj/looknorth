@@ -73,12 +73,35 @@ public class NameGenerator {
 
         Product product1 = new Product();
         Product product2 = new Product();
+        Product product3 = new Product();
         product1.name = "ASD";
         product2.name = "DSA";
+        product3.name = "ADAsA";
+
 
         products.add(product1);
         products.add(product2);
+        products.add(product3);
 
-        n.translateNameToString(products);
+        Machine m1 = new Machine();
+        Machine m2 = new Machine();
+        Machine m3 = new Machine();
+
+        m1.machineNumber = 1;
+        m2.machineNumber = 2;
+        m3.machineNumber = 3;
+
+        m1.currentProduct = product1;
+        m2.currentProduct = product2;
+        m3.currentProduct = product3;
+
+        List<Machine> list = new ArrayList<>();
+
+        //adding the products in wrong order.
+        list.add(m3);
+        list.add(m1);
+        list.add(m2);
+
+        System.out.println(n.generateName(list));
     }
 }

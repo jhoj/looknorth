@@ -2,19 +2,6 @@ package fo.looknorth.app;
 
 import org.junit.Test;
 
-import java.util.List;
-
-import fo.looknorth.model.RecommendedOilConsumption;
-import fo.looknorth.model.IRecommendedOilConsumptionRepository;
-import fo.looknorth.model.IMachineRepository;
-import fo.looknorth.model.IOilConsumptionRepository;
-import fo.looknorth.model.IProductRepository;
-import fo.looknorth.model.IProductionRepository;
-import fo.looknorth.model.Machine;
-import fo.looknorth.model.OilConsumption;
-import fo.looknorth.model.Product;
-import fo.looknorth.model.Production;
-
 import static org.junit.Assert.*;
 
 /**

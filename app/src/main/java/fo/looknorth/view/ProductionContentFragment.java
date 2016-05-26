@@ -33,7 +33,6 @@ import fo.looknorth.logic.Logic;
 import fo.looknorth.model.Machine;
 
 import fo.looknorth.model.Product;
-import fo.looknorth.model.ProductionCounter;
 
 public class ProductionContentFragment extends Fragment implements OnChartValueSelectedListener, Runnable {
 

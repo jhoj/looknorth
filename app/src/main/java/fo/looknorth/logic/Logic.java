@@ -20,7 +20,6 @@ import fo.looknorth.api.Api;
 import fo.looknorth.model.Machine;
 import fo.looknorth.model.OilConsumptionEntry;
 import fo.looknorth.model.Product;
-import fo.looknorth.model.ProductionCounter;
 import fo.looknorth.model.ProductionEntry;
 import fo.looknorth.mqtt.LooknorthMqttCallback;
 import fo.looknorth.mqtt.MqttActionListener;
@@ -95,6 +94,7 @@ public class Logic extends Application {
         for (Machine m: machines) {
             m.productionEntry = new ProductionEntry();
         }
+
         productList = api.getDbProducts();
 
         List<OilConsumptionEntry> oilTotalEntries = new ArrayList<>();
@@ -111,49 +111,6 @@ public class Logic extends Application {
         oilUsageLinePoints.put(3, oilMachine3Entries);  // machine 3
         oilUsageLinePoints.put(4, oilMachine4Enties); // machine 4
         oilUsageLinePoints.put(5, oilMachine5Entries); // machine 5
-
-        records = new String[2];
-        records[0] = oilTotalEntries.get(0).toString();
-        records[1] = oilTotalEntries.get(1).toString();
-
-        int quantity = 2;
-        int quantity1 = 1;
-
-        Product p1 = new Product(1, "Test Product 1", quantity);
-        Product p2 = new Product(2, "Test Product 2", quantity1);
-
-        ProductionCounter p1m1 = new ProductionCounter(p1);
-        ProductionCounter p2m1 = new ProductionCounter(p2);
-
-        p1m1.productionCycles = 1;
-        p2m1.productionCycles = 1;
-
-        //m1 p1 total = 2 * 1
-        p1m1.updateQuantityProduced();
-        //m1 p2 total = 1 * 1
-        p2m1.updateQuantityProduced();
-
-        //production for total
-        machines.get(0).productionCounterList = new ArrayList<>();
-        machines.get(0).productionCounterList.add(p1m1);
-        machines.get(0).productionCounterList.add(p2m1);
-
-        machines.get(1).productionCounterList = new ArrayList<>();
-        machines.get(1).productionCounterList.add(p1m1);
-        machines.get(1).productionCounterList.add(p2m1);
-
-        machines.get(2).productionCounterList = new ArrayList<>();
-        machines.get(2).productionCounterList.add(p1m1);
-        machines.get(2).productionCounterList.add(p2m1);
-
-        machines.get(3).productionCounterList = new ArrayList<>();
-        machines.get(3).productionCounterList.add(p1m1);
-        machines.get(3).productionCounterList.add(p2m1);
-
-        machines.get(4).productionCounterList = new ArrayList<>();
-        machines.get(4).productionCounterList.add(p1m1);
-        machines.get(4).productionCounterList.add(p2m1);
-
     }
 
     public String getDate() {
